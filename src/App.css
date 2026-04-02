@@ -1,0 +1,50 @@
+.container {
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  margin: 20px;
+  width: 250px;
+  font-size: 16px;
+}
+
+.state {
+  fill: #ccc;
+  stroke: #333;
+  cursor: pointer;
+}
+
+.state:hover {
+  fill: #aaa;
+}
+
+.highlight {
+  fill: orange;
+  stroke: black;
+}
+
+.highlight:hover {
+  fill: #ffb300;
+}
+
+.found {
+  fill: #4caf50;
+  stroke: #1b5e20;
+}
+
+.found:hover {
+  fill: #388e3c;
+}
+
+.score {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.tip {
+  font-size: 13px;
+  color: #888;
+  margin: 4px 0 8px;
+}
