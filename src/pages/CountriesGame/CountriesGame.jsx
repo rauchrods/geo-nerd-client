@@ -7,8 +7,8 @@ import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import "./CountriesGame.css";
 
-const WIDTH = 960;
-const HEIGHT = 500;
+const WIDTH = 980;
+const HEIGHT = 550;
 
 function CountriesGame() {
   const [geoData, setGeoData] = useState(null);
