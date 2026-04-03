@@ -6,6 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { toSlug } from "../../utils/helpers";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
+import Button from "../../components/ui/Button/Button";
 
 function DistrictGame() {
   const { stateName: stateSlug } = useParams();
@@ -71,9 +72,9 @@ function DistrictGame() {
   if (allDistrictsGeo && !stateName) {
     return (
       <div className="container">
-        <button className="back-btn" onClick={() => navigate("/districts")}>
+        <Button variant="ghost" onClick={() => navigate("/districts")}>
           <FaArrowLeft /> Back
-        </button>
+        </Button>
         <h1>State not found</h1>
         <p>No state matches "{stateSlug}". Check the URL.</p>
       </div>
@@ -82,9 +83,9 @@ function DistrictGame() {
 
   return (
     <div className="container">
-      <button className="back-btn" onClick={() => navigate("/districts")}>
+      <Button variant="ghost" onClick={() => navigate("/districts")}>
         <FaArrowLeft /> Back to States
-      </button>
+      </Button>
       <h1>{stateName || "Loading…"}</h1>
       <p className="score">
         Score: {score} / {total}

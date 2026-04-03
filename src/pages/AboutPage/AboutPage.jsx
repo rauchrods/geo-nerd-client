@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaGlobe, FaHeart, FaGithub, FaDatabase } from "react-icons/fa";
+import Button from "../../components/ui/Button/Button";
 import "./AboutPage.css";
 
 function AboutPage() {
@@ -7,9 +8,9 @@ function AboutPage() {
 
   return (
     <div className="about-container">
-      <button className="back-btn" onClick={() => navigate("/")}>
+      <Button variant="ghost" onClick={() => navigate("/")}>
         <FaArrowLeft /> Back
-      </button>
+      </Button>
 
       <div className="about-card">
         <FaGlobe className="about-globe" />

@@ -57,27 +57,6 @@
   margin: 4px 0 8px;
 }
 
-/* ── Shared back button (used by all pages) ─────────────── */
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  margin-bottom: 12px;
-  background: none;
-  border: 2px solid var(--border-input);
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  color: var(--text-muted);
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.back-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 /* ── home-subtitle is also used by StatesGridPage ───────── */
 .home-subtitle {
   font-size: 16px;

@@ -4,6 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { feature } from "topojson-client";
 import StateMiniMap from "../../components/StateMiniMap/StateMiniMap";
 import { toSlug } from "../../utils/helpers";
+import Button from "../../components/ui/Button/Button";
 import "./StatesGridPage.css";
 
 function StatesGridPage() {
@@ -34,9 +35,9 @@ function StatesGridPage() {
 
   return (
     <div className="grid-page">
-      <button className="back-btn" onClick={() => navigate("/")}>
+      <Button variant="ghost" onClick={() => navigate("/")}>
         <FaArrowLeft /> Back
-      </button>
+      </Button>
       <h1>Pick a State</h1>
       <p className="home-subtitle">
         Click a state to start guessing its districts

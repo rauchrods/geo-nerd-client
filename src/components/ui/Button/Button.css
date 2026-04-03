@@ -1,0 +1,37 @@
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+/* Ghost — outlined, used for back buttons */
+.ui-btn--ghost {
+  background: none;
+  border: 2px solid var(--border-input);
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.ui-btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Solid — filled accent, used for primary actions */
+.ui-btn--solid {
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  color: #fff;
+}
+
+.ui-btn--solid:hover {
+  box-shadow: 0 4px 16px var(--accent-shadow);
+  opacity: 0.9;
+}

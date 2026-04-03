@@ -5,6 +5,7 @@ import { feature } from "topojson-client";
 import { FaArrowLeft } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
+import Button from "../../components/ui/Button/Button";
 
 const WIDTH = 960;
 const HEIGHT = 600;
@@ -51,9 +52,9 @@ function UsaStatesGame() {
 
   return (
     <div className="container">
-      <button className="back-btn" onClick={() => navigate("/")}>
+      <Button variant="ghost" onClick={() => navigate("/")}>
         <FaArrowLeft /> Back
-      </button>
+      </Button>
       <h1>US States</h1>
       <p className="score">
         Score: {score} / {total}
