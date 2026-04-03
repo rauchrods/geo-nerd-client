@@ -1,0 +1,102 @@
+.about-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  position: relative;
+}
+
+.about-container .back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+
+.about-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.about-globe {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.about-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text);
+}
+
+.about-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: left;
+}
+
+.about-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 8px 0;
+}
+
+.about-made-with {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.about-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+}
+
+.about-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.about-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.about-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 2px 12px var(--accent-shadow);
+}
+
+.about-link-icon {
+  width: 16px;
+  height: 16px;
+}

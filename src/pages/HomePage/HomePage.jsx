@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./HomePage.css";
 
 function HomePage() {
@@ -20,6 +20,7 @@ function HomePage() {
           <span className="home-btn-desc">Pick a state, guess its districts</span>
         </button>
       </div>
+      <Link to="/about" className="home-about-link">About this project</Link>
     </div>
   );
 }

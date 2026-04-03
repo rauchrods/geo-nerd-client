@@ -64,3 +64,15 @@
   font-size: 13px;
   color: #888;
 }
+
+.home-about-link {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.home-about-link:hover {
+  color: var(--accent);
+}
