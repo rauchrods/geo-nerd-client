@@ -1,0 +1,13 @@
+.mini-map {
+  display: block;
+}
+
+.mini-district {
+  fill: #d6c8f5;
+  stroke: #7c3aed;
+  stroke-width: 0.5;
+}
+
+.state-card:hover .mini-district {
+  fill: #c4b0f0;
+}

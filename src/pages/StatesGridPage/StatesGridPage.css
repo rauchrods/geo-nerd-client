@@ -1,0 +1,52 @@
+.grid-page {
+  padding: 24px;
+  text-align: center;
+}
+
+.loading {
+  color: #888;
+  font-size: 16px;
+  margin: 40px 0;
+}
+
+.states-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.state-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 2px solid #e5e4e7;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.state-card:hover {
+  border-color: #aa3bff;
+  box-shadow: 0 4px 16px rgba(170, 59, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.state-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 6px 0 2px;
+  color: #08060d;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.state-card-count {
+  font-size: 11px;
+  color: #aaa;
+  margin: 0;
+}

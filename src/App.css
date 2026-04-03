@@ -1,17 +1,27 @@
+/* ── Shared game styles (used by StatesGame & DistrictGame) ── */
 .container {
   text-align: center;
+  padding: 16px;
 }
 
 input {
   padding: 10px;
   margin: 20px;
-  width: 250px;
+  width: 260px;
   font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #aa3bff;
 }
 
 .state {
   fill: #ccc;
   stroke: #333;
+  stroke-width: 0.5;
   cursor: pointer;
 }
 
@@ -22,6 +32,7 @@ input {
 .highlight {
   fill: orange;
   stroke: black;
+  stroke-width: 0.5;
 }
 
 .highlight:hover {
@@ -31,6 +42,7 @@ input {
 .found {
   fill: #4caf50;
   stroke: #1b5e20;
+  stroke-width: 0.5;
 }
 
 .found:hover {
@@ -47,4 +59,32 @@ input {
   font-size: 13px;
   color: #888;
   margin: 4px 0 8px;
+}
+
+/* ── Shared back button (used by all pages) ─────────────── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  background: none;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #555;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.back-btn:hover {
+  border-color: #aa3bff;
+  color: #aa3bff;
+}
+
+/* ── home-subtitle is also used by StatesGridPage ───────── */
+.home-subtitle {
+  font-size: 16px;
+  color: #888;
+  margin: 0;
 }
