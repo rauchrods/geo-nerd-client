@@ -4,6 +4,7 @@ import {
   FaLandmark,
   FaMapMarkerAlt,
   FaGlobe,
+  FaFlag,
   FaInfoCircle,
 } from "react-icons/fa";
 import "./HomePage.css";
@@ -35,6 +36,14 @@ function HomePage() {
           <FaGlobe className="home-btn-icon" />
           <span className="home-btn-label">Play World Countries</span>
           <span className="home-btn-desc">Guess all 180 countries</span>
+        </button>
+        <button
+          className="home-btn"
+          onClick={() => navigate("/usa-states-game")}
+        >
+          <FaFlag className="home-btn-icon" />
+          <span className="home-btn-label">Play US States</span>
+          <span className="home-btn-desc">Guess all 50 states & DC</span>
         </button>
       </div>
       <Link to="/about" className="home-about-link">

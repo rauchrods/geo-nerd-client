@@ -3,11 +3,12 @@ import "./App.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 import HomePage from "./pages/HomePage/HomePage";
-import StatesGame from "./pages/StatesGame/StatesGame";
+import IndianStatesGame from "./pages/IndianStatesGame/IndianStatesGame";
 import StatesGridPage from "./pages/StatesGridPage/StatesGridPage";
 import DistrictGame from "./pages/DistrictGame/DistrictGame";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import CountriesGame from "./pages/CountriesGame/CountriesGame";
+import UsaStatesGame from "./pages/UsaStatesGame/UsaStatesGame";
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
         <ThemeToggle />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/states-game" element={<StatesGame />} />
+          <Route path="/states-game" element={<IndianStatesGame />} />
           <Route path="/districts" element={<StatesGridPage />} />
           <Route path="/districts/:stateName" element={<DistrictGame />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/countries-game" element={<CountriesGame />} />
+          <Route path="/usa-states-game" element={<UsaStatesGame />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

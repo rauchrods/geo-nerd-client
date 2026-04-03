@@ -5,9 +5,9 @@ import { feature } from "topojson-client";
 import { FaArrowLeft } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
-import "./StatesGame.css";
+import "./IndianStatesGame.css";
 
-function StatesGame() {
+function IndianStatesGame() {
   const [geoData, setGeoData] = useState(null);
   const [search, setSearch] = useState("");
   const [score, setScore] = useState(0);
@@ -97,4 +97,4 @@ function StatesGame() {
   );
 }
 
-export default StatesGame;
+export default IndianStatesGame;
