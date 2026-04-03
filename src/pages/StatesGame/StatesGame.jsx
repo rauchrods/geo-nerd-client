@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
+import SearchInput from "../../components/SearchInput/SearchInput";
 
 function StatesGame() {
   const [geoData, setGeoData] = useState(null);
@@ -38,12 +39,11 @@ function StatesGame() {
       <button className="back-btn" onClick={() => navigate("/")}>← Back</button>
       <h1>Indian States</h1>
       <p className="score">Score: {score} / {total}</p>
-      <input
-        type="text"
-        placeholder="Enter state name and press Enter..."
+      <SearchInput
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={handleKeyDown}
+        placeholder="Enter state name and press Enter..."
       />
       <p className="tip">Tip: Hover over a state to see its name</p>
 

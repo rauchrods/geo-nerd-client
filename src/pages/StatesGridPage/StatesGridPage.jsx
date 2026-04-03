@@ -2,9 +2,8 @@ import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { feature } from "topojson-client";
 import StateMiniMap from "../../components/StateMiniMap/StateMiniMap";
+import { toSlug } from "../../utils/helpers";
 import "./StatesGridPage.css";
-
-const toSlug = (name) => name.toLowerCase().replace(/\s+/g, "-");
 
 function StatesGridPage() {
   const [districtsGeo, setDistrictsGeo] = useState(null);

@@ -2,8 +2,8 @@ import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-
-const toSlug = (name) => name.toLowerCase().replace(/\s+/g, "-");
+import { toSlug } from "../../utils/helpers";
+import SearchInput from "../../components/SearchInput/SearchInput";
 
 function DistrictGame() {
   const { stateName: stateSlug } = useParams();
@@ -83,12 +83,11 @@ function DistrictGame() {
       <p className="score">
         Score: {score} / {total}
       </p>
-      <input
-        type="text"
-        placeholder="Enter district name and press Enter..."
+      <SearchInput
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={handleKeyDown}
+        placeholder="Enter district name and press Enter..."
       />
       <p className="tip">Tip: Hover over a district to see its name</p>
 

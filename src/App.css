@@ -4,22 +4,6 @@
   padding: 16px;
 }
 
-input {
-  padding: 10px;
-  margin: 20px;
-  width: 260px;
-  font-size: 16px;
-  border: 2px solid var(--border-input);
-  border-radius: 8px;
-  outline: none;
-  background: var(--bg-surface);
-  color: var(--text);
-  transition: border-color 0.2s, background-color 0.25s, color 0.25s;
-}
-
-input:focus {
-  border-color: var(--accent);
-}
 
 .state {
   fill: var(--state-fill);
