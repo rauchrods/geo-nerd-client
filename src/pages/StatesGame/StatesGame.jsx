@@ -12,6 +12,7 @@ function StatesGame() {
   const [search, setSearch] = useState("");
   const [score, setScore] = useState(0);
   const [foundStates, setFoundStates] = useState([]);
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
@@ -23,6 +24,9 @@ function StatesGame() {
       setFoundStates((prev) => [...prev, match.properties.st_nm]);
       setScore((prev) => prev + 1);
       setSearch("");
+      setIsError(false);
+    } else {
+      setIsError(true);
     }
   };
 
@@ -39,14 +43,22 @@ function StatesGame() {
 
   return (
     <div className="container">
-      <button className="back-btn" onClick={() => navigate("/")}><FaArrowLeft /> Back</button>
+      <button className="back-btn" onClick={() => navigate("/")}>
+        <FaArrowLeft /> Back
+      </button>
       <h1>Indian States</h1>
-      <p className="score">Score: {score} / {total}</p>
+      <p className="score">
+        Score: {score} / {total}
+      </p>
       <SearchInput
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setIsError(false);
+        }}
         onKeyDown={handleKeyDown}
         placeholder="Enter state name and press Enter..."
+        isError={isError}
       />
       <p className="tip">Tip: Hover over a state to see its name</p>
 
@@ -66,8 +78,12 @@ function StatesGame() {
                   key={i}
                   d={d3
                     .geoPath()
-                    .projection(d3.geoMercator().fitSize([800, 800], geoData))(d)}
-                  className={isFound ? "found" : isMatch ? "highlight" : "state"}
+                    .projection(d3.geoMercator().fitSize([800, 800], geoData))(
+                    d,
+                  )}
+                  className={
+                    isFound ? "found" : isMatch ? "highlight" : "state"
+                  }
                 >
                   <title>{stateName}</title>
                 </path>

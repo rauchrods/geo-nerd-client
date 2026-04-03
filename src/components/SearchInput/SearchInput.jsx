@@ -1,9 +1,16 @@
 import "./SearchInput.css";
 
-function SearchInput({ value, onChange, onKeyDown, placeholder, ...props }) {
+function SearchInput({
+  value,
+  onChange,
+  onKeyDown,
+  placeholder,
+  isError,
+  ...props
+}) {
   return (
     <input
-      className="search-input"
+      className={`search-input${isError ? " search-input--error" : ""}`}
       type="text"
       placeholder={placeholder}
       value={value}

@@ -15,6 +15,7 @@ function CountriesGame() {
   const [search, setSearch] = useState("");
   const [score, setScore] = useState(0);
   const [foundCountries, setFoundCountries] = useState([]);
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,9 +29,7 @@ function CountriesGame() {
 
   const pathFn = useMemo(() => {
     if (!geoData) return null;
-    const projection = d3
-      .geoNaturalEarth1()
-      .fitSize([WIDTH, HEIGHT], geoData);
+    const projection = d3.geoNaturalEarth1().fitSize([WIDTH, HEIGHT], geoData);
     return d3.geoPath().projection(projection);
   }, [geoData]);
 
@@ -43,6 +42,9 @@ function CountriesGame() {
       setFoundCountries((prev) => [...prev, match.properties.name]);
       setScore((prev) => prev + 1);
       setSearch("");
+      setIsError(false);
+    } else {
+      setIsError(true);
     }
   };
 
@@ -59,9 +61,13 @@ function CountriesGame() {
       </p>
       <SearchInput
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setIsError(false);
+        }}
         onKeyDown={handleKeyDown}
         placeholder="Enter country name and press Enter..."
+        isError={isError}
       />
       <p className="tip">Tip: Hover over a country to see its name</p>
 
@@ -86,7 +92,9 @@ function CountriesGame() {
                 <path
                   key={i}
                   d={pathFn(d)}
-                  className={isFound ? "found" : isMatch ? "highlight" : "state"}
+                  className={
+                    isFound ? "found" : isMatch ? "highlight" : "state"
+                  }
                 >
                   <title>{countryName}</title>
                 </path>

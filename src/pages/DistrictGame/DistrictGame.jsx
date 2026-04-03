@@ -15,6 +15,7 @@ function DistrictGame() {
   const [search, setSearch] = useState("");
   const [score, setScore] = useState(0);
   const [foundDistricts, setFoundDistricts] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     fetch("/india-states.json")
@@ -59,6 +60,9 @@ function DistrictGame() {
       setFoundDistricts((prev) => [...prev, match.properties.district]);
       setScore((prev) => prev + 1);
       setSearch("");
+      setIsError(false);
+    } else {
+      setIsError(true);
     }
   };
 
@@ -87,35 +91,41 @@ function DistrictGame() {
       </p>
       <SearchInput
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setIsError(false);
+        }}
         onKeyDown={handleKeyDown}
         placeholder="Enter district name and press Enter..."
+        isError={isError}
       />
       <p className="tip">Tip: Hover over a district to see its name</p>
 
       <div className="game-layout">
-      <svg width={700} height={600}>
-        {stateGeo &&
-          pathFn &&
-          stateGeo.features.map((d, i) => {
-            const districtName = d.properties.district;
-            const isFound = foundDistricts.includes(districtName);
-            const isMatch =
-              !isFound &&
-              search &&
-              districtName.toLowerCase().includes(search.toLowerCase());
+        <svg width={700} height={600}>
+          {stateGeo &&
+            pathFn &&
+            stateGeo.features.map((d, i) => {
+              const districtName = d.properties.district;
+              const isFound = foundDistricts.includes(districtName);
+              const isMatch =
+                !isFound &&
+                search &&
+                districtName.toLowerCase().includes(search.toLowerCase());
 
-            return (
-              <path
-                key={i}
-                d={pathFn(d)}
-                className={isFound ? "found" : isMatch ? "highlight" : "state"}
-              >
-                <title>{districtName}</title>
-              </path>
-            );
-          })}
-      </svg>
+              return (
+                <path
+                  key={i}
+                  d={pathFn(d)}
+                  className={
+                    isFound ? "found" : isMatch ? "highlight" : "state"
+                  }
+                >
+                  <title>{districtName}</title>
+                </path>
+              );
+            })}
+        </svg>
         <FoundList items={foundDistricts} />
       </div>
     </div>
