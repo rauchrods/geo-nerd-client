@@ -68,6 +68,18 @@ function AboutPage() {
             </a>
             . Huge thanks for making this open and accessible!
           </p>
+          <p className="about-credits-body" style={{ marginTop: "10px" }}>
+            World countries TopoJSON data provided by{" "}
+            <a
+              href="https://github.com/subyfly/topojson/blob/master/world-countries.json"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-credits-link"
+            >
+              subyfly/topojson
+            </a>
+            . Thanks for sharing this with the community!
+          </p>
         </div>
       </div>
     </div>

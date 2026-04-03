@@ -1,0 +1,103 @@
+import { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import * as d3 from "d3";
+import { feature } from "topojson-client";
+import { FaArrowLeft } from "react-icons/fa";
+import SearchInput from "../../components/SearchInput/SearchInput";
+import FoundList from "../../components/FoundList/FoundList";
+import "./CountriesGame.css";
+
+const WIDTH = 960;
+const HEIGHT = 500;
+
+function CountriesGame() {
+  const [geoData, setGeoData] = useState(null);
+  const [search, setSearch] = useState("");
+  const [score, setScore] = useState(0);
+  const [foundCountries, setFoundCountries] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/world-countries.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const geo = feature(data, data.objects.countries);
+        setGeoData(geo);
+      });
+  }, []);
+
+  const pathFn = useMemo(() => {
+    if (!geoData) return null;
+    const projection = d3
+      .geoNaturalEarth1()
+      .fitSize([WIDTH, HEIGHT], geoData);
+    return d3.geoPath().projection(projection);
+  }, [geoData]);
+
+  const handleKeyDown = (e) => {
+    if (e.key !== "Enter" || !geoData || !search.trim()) return;
+    const match = geoData.features.find(
+      (f) => f.properties.name.toLowerCase() === search.trim().toLowerCase(),
+    );
+    if (match && !foundCountries.includes(match.properties.name)) {
+      setFoundCountries((prev) => [...prev, match.properties.name]);
+      setScore((prev) => prev + 1);
+      setSearch("");
+    }
+  };
+
+  const total = geoData ? geoData.features.length : 180;
+
+  return (
+    <div className="container">
+      <button className="back-btn" onClick={() => navigate("/")}>
+        <FaArrowLeft /> Back
+      </button>
+      <h1>World Countries</h1>
+      <p className="score">
+        Score: {score} / {total}
+      </p>
+      <SearchInput
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Enter country name and press Enter..."
+      />
+      <p className="tip">Tip: Hover over a country to see its name</p>
+
+      <div className="game-layout">
+        <svg
+          className="countries-svg"
+          viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+          width={WIDTH}
+          height={HEIGHT}
+        >
+          {geoData &&
+            pathFn &&
+            geoData.features.map((d, i) => {
+              const countryName = d.properties.name;
+              const isFound = foundCountries.includes(countryName);
+              const isMatch =
+                !isFound &&
+                search &&
+                countryName.toLowerCase().includes(search.toLowerCase());
+
+              return (
+                <path
+                  key={i}
+                  d={pathFn(d)}
+                  className={isFound ? "found" : isMatch ? "highlight" : "state"}
+                >
+                  <title>{countryName}</title>
+                </path>
+              );
+            })}
+        </svg>
+
+        <FoundList items={foundCountries} />
+      </div>
+    </div>
+  );
+}
+
+export default CountriesGame;

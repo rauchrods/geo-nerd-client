@@ -7,6 +7,7 @@ import StatesGame from "./pages/StatesGame/StatesGame";
 import StatesGridPage from "./pages/StatesGridPage/StatesGridPage";
 import DistrictGame from "./pages/DistrictGame/DistrictGame";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import CountriesGame from "./pages/CountriesGame/CountriesGame";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/districts" element={<StatesGridPage />} />
           <Route path="/districts/:stateName" element={<DistrictGame />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/countries-game" element={<CountriesGame />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
