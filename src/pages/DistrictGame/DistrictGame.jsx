@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import { feature } from "topojson-client";
 import { toSlug } from "../../utils/helpers";
 import SearchInput from "../../components/SearchInput/SearchInput";
+import FoundList from "../../components/FoundList/FoundList";
 
 function DistrictGame() {
   const { stateName: stateSlug } = useParams();
@@ -91,6 +92,7 @@ function DistrictGame() {
       />
       <p className="tip">Tip: Hover over a district to see its name</p>
 
+      <div className="game-layout">
       <svg width={700} height={600}>
         {stateGeo &&
           pathFn &&
@@ -113,6 +115,8 @@ function DistrictGame() {
             );
           })}
       </svg>
+        <FoundList items={foundDistricts} />
+      </div>
     </div>
   );
 }

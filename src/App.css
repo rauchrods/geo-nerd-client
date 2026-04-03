@@ -4,6 +4,13 @@
   padding: 16px;
 }
 
+.game-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+}
+
 
 .state {
   fill: var(--state-fill);
