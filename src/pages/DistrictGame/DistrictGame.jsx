@@ -103,7 +103,7 @@ function DistrictGame() {
       <p className="tip">Tip: Hover over a district to see its name</p>
 
       <div className="game-layout">
-        <svg width={700} height={600}>
+        <svg viewBox="0 0 700 600" style={{ width: "100%", maxWidth: 700, height: "auto" }}>
           {stateGeo &&
             pathFn &&
             stateGeo.features.map((d, i) => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
@@ -15,6 +15,12 @@ function IndianStatesGame() {
   const [foundStates, setFoundStates] = useState([]);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+
+  const pathFn = useMemo(() => {
+    if (!geoData) return null;
+    const projection = d3.geoMercator().fitSize([800, 800], geoData);
+    return d3.geoPath().projection(projection);
+  }, [geoData]);
 
   const handleKeyDown = (e) => {
     if (e.key !== "Enter" || !geoData || !search.trim()) return;
@@ -64,8 +70,12 @@ function IndianStatesGame() {
       <p className="tip">Tip: Hover over a state to see its name</p>
 
       <div className="game-layout">
-        <svg width={800} height={800}>
+        <svg
+          viewBox="0 0 800 800"
+          style={{ width: "100%", maxWidth: 800, height: "auto" }}
+        >
           {geoData &&
+            pathFn &&
             geoData.features.map((d, i) => {
               const stateName = d.properties.st_nm;
               const isFound = foundStates.includes(stateName);
@@ -77,11 +87,7 @@ function IndianStatesGame() {
               return (
                 <path
                   key={i}
-                  d={d3
-                    .geoPath()
-                    .projection(d3.geoMercator().fitSize([800, 800], geoData))(
-                    d,
-                  )}
+                  d={pathFn(d)}
                   className={
                     isFound ? "found" : isMatch ? "highlight" : "state"
                   }
