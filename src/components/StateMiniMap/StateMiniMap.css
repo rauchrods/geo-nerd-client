@@ -3,11 +3,12 @@
 }
 
 .mini-district {
-  fill: #d6c8f5;
-  stroke: #7c3aed;
+  fill: var(--mini-fill);
+  stroke: var(--mini-stroke);
   stroke-width: 0.5;
+  transition: fill 0.15s;
 }
 
 .state-card:hover .mini-district {
-  fill: #c4b0f0;
+  fill: var(--mini-hover);
 }

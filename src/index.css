@@ -1,0 +1,51 @@
+/* ── Theme tokens ──────────────────────────────────────────── */
+:root,
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-surface: #ffffff;
+  --text: #08060d;
+  --text-muted: #888888;
+  --border: #e5e4e7;
+  --border-input: #cccccc;
+  --accent: #aa3bff;
+  --accent-shadow: rgba(170, 59, 255, 0.15);
+  --state-fill: #cccccc;
+  --state-stroke: #333333;
+  --state-hover: #aaaaaa;
+  --mini-fill: #d6c8f5;
+  --mini-stroke: #7c3aed;
+  --mini-hover: #c4b0f0;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0d14;
+  --bg-surface: #1a1724;
+  --text: #f0edf8;
+  --text-muted: #9993a8;
+  --border: #2e2a3a;
+  --border-input: #3a3548;
+  --accent: #aa3bff;
+  --accent-shadow: rgba(170, 59, 255, 0.25);
+  --state-fill: #3a3548;
+  --state-stroke: #6b6375;
+  --state-hover: #4a4460;
+  --mini-fill: #3b2a5e;
+  --mini-stroke: #9d5eff;
+  --mini-hover: #4a3570;
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s, color 0.25s;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+}

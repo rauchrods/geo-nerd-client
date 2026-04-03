@@ -9,24 +9,28 @@ input {
   margin: 20px;
   width: 260px;
   font-size: 16px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--border-input);
   border-radius: 8px;
   outline: none;
+  background: var(--bg-surface);
+  color: var(--text);
+  transition: border-color 0.2s, background-color 0.25s, color 0.25s;
 }
 
 input:focus {
-  border-color: #aa3bff;
+  border-color: var(--accent);
 }
 
 .state {
-  fill: #ccc;
-  stroke: #333;
+  fill: var(--state-fill);
+  stroke: var(--state-stroke);
   stroke-width: 0.5;
   cursor: pointer;
+  transition: fill 0.15s;
 }
 
 .state:hover {
-  fill: #aaa;
+  fill: var(--state-hover);
 }
 
 .highlight {
@@ -53,11 +57,12 @@ input:focus {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
+  color: var(--text);
 }
 
 .tip {
   font-size: 13px;
-  color: #888;
+  color: var(--text-muted);
   margin: 4px 0 8px;
 }
 
@@ -69,22 +74,22 @@ input:focus {
   padding: 8px 16px;
   margin-bottom: 12px;
   background: none;
-  border: 2px solid #ccc;
+  border: 2px solid var(--border-input);
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
-  color: #555;
+  color: var(--text-muted);
   transition: border-color 0.2s, color 0.2s;
 }
 
 .back-btn:hover {
-  border-color: #aa3bff;
-  color: #aa3bff;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ── home-subtitle is also used by StatesGridPage ───────── */
 .home-subtitle {
   font-size: 16px;
-  color: #888;
+  color: var(--text-muted);
   margin: 0;
 }
