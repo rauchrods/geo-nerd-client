@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import { feature } from "topojson-client";
 import StateMiniMap from "../../components/StateMiniMap/StateMiniMap";
 import { toSlug } from "../../utils/helpers";
@@ -33,7 +34,7 @@ function StatesGridPage() {
 
   return (
     <div className="grid-page">
-      <button className="back-btn" onClick={() => navigate("/")}>← Back</button>
+      <button className="back-btn" onClick={() => navigate("/")}><FaArrowLeft /> Back</button>
       <h1>Pick a State</h1>
       <p className="home-subtitle">Click a state to start guessing its districts</p>
       {!districtsGeo && <p className="loading">Loading map data…</p>}

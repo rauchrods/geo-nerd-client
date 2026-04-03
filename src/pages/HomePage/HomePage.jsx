@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import { FaMap, FaLandmark, FaMapMarkerAlt, FaInfoCircle } from "react-icons/fa";
 import "./HomePage.css";
 
 function HomePage() {
@@ -10,17 +11,17 @@ function HomePage() {
       <p className="home-subtitle">Test your knowledge of Indian geography!</p>
       <div className="home-options">
         <button className="home-btn" onClick={() => navigate("/states-game")}>
-          <span className="home-btn-icon">🏛️</span>
+          <FaLandmark className="home-btn-icon" />
           <span className="home-btn-label">Play Indian States</span>
           <span className="home-btn-desc">Guess all 36 states & UTs</span>
         </button>
         <button className="home-btn" onClick={() => navigate("/districts")}>
-          <span className="home-btn-icon">📍</span>
+          <FaMapMarkerAlt className="home-btn-icon" />
           <span className="home-btn-label">Play State Districts</span>
           <span className="home-btn-desc">Pick a state, guess its districts</span>
         </button>
       </div>
-      <Link to="/about" className="home-about-link">About this project</Link>
+      <Link to="/about" className="home-about-link"><FaInfoCircle /> About this project</Link>
     </div>
   );
 }

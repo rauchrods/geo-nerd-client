@@ -30,6 +30,7 @@
 
 .about-globe {
   font-size: 56px;
+  color: var(--accent);
   line-height: 1;
 }
 
@@ -60,6 +61,13 @@
   font-size: 14px;
   color: var(--text-muted);
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.about-heart {
+  color: #ef4444;
 }
 
 .about-name {
@@ -99,4 +107,46 @@
 .about-link-icon {
   width: 16px;
   height: 16px;
+}
+
+.about-credits {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.about-credits-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.about-credits-icon {
+  color: var(--accent);
+}
+
+.about-credits-body {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.about-credits-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.about-credits-link:hover {
+  text-decoration: underline;
 }

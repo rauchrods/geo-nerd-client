@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
+import { FaArrowLeft } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import "./StatesGame.css";
@@ -38,7 +39,7 @@ function StatesGame() {
 
   return (
     <div className="container">
-      <button className="back-btn" onClick={() => navigate("/")}>← Back</button>
+      <button className="back-btn" onClick={() => navigate("/")}><FaArrowLeft /> Back</button>
       <h1>Indian States</h1>
       <p className="score">Score: {score} / {total}</p>
       <SearchInput

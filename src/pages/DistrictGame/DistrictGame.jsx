@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
+import { FaArrowLeft } from "react-icons/fa";
 import { toSlug } from "../../utils/helpers";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
@@ -67,7 +68,7 @@ function DistrictGame() {
     return (
       <div className="container">
         <button className="back-btn" onClick={() => navigate("/districts")}>
-          ← Back
+          <FaArrowLeft /> Back
         </button>
         <h1>State not found</h1>
         <p>No state matches "{stateSlug}". Check the URL.</p>
@@ -78,7 +79,7 @@ function DistrictGame() {
   return (
     <div className="container">
       <button className="back-btn" onClick={() => navigate("/districts")}>
-        ← Back to States
+        <FaArrowLeft /> Back to States
       </button>
       <h1>{stateName || "Loading…"}</h1>
       <p className="score">
