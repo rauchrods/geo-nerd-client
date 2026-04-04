@@ -2,11 +2,9 @@ import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-import { FaArrowLeft } from "react-icons/fa";
 import { toSlug } from "../../utils/helpers";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
-import Button from "../../components/ui/Button/Button";
 import GameTimer from "../../components/GameTimer/GameTimer";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
@@ -83,9 +81,6 @@ function DistrictGame() {
   if (allDistrictsGeo && !stateName) {
     return (
       <div className="container">
-        <Button variant="ghost" onClick={() => navigate("/districts")}>
-          <FaArrowLeft /> Back
-        </Button>
         <h1>State not found</h1>
         <p>No state matches "{stateSlug}". Check the URL.</p>
       </div>
@@ -95,11 +90,6 @@ function DistrictGame() {
   return (
     <div className="container">
       <div className="game-header">
-        <div className="game-header__back">
-          <Button variant="ghost" onClick={() => navigate("/districts")}>
-            <FaArrowLeft /> Back to States
-          </Button>
-        </div>
         <h1 className="game-header__title">{stateName || "Loading…"}</h1>
       </div>
       <p className="score">

@@ -2,10 +2,8 @@ import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-import { FaArrowLeft } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
-import Button from "../../components/ui/Button/Button";
 import GameTimer from "../../components/GameTimer/GameTimer";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
@@ -64,11 +62,6 @@ function UsaStatesGame() {
   return (
     <div className="container">
       <div className="game-header">
-        <div className="game-header__back">
-          <Button variant="ghost" onClick={() => navigate("/")}>
-            <FaArrowLeft /> Back
-          </Button>
-        </div>
         <h1 className="game-header__title">US States</h1>
       </div>
       <p className="score">

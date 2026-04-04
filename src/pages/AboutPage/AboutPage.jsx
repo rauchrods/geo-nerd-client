@@ -1,17 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaGlobe, FaHeart, FaGithub, FaDatabase } from "react-icons/fa";
-import Button from "../../components/ui/Button/Button";
+import { FaGlobe, FaHeart, FaGithub, FaDatabase } from "react-icons/fa";
 import "./AboutPage.css";
 
 function AboutPage() {
-  const navigate = useNavigate();
-
   return (
     <div className="about-container">
-      <Button variant="ghost" onClick={() => navigate("/")}>
-        <FaArrowLeft /> Back
-      </Button>
-
       <div className="about-card">
         <FaGlobe className="about-globe" />
         <h1 className="about-title">About Geo Nerd</h1>

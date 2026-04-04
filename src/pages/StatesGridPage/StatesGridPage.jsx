@@ -1,10 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
 import { feature } from "topojson-client";
 import StateMiniMap from "../../components/StateMiniMap/StateMiniMap";
 import { toSlug } from "../../utils/helpers";
-import Button from "../../components/ui/Button/Button";
 import "./StatesGridPage.css";
 
 function StatesGridPage() {
@@ -37,13 +35,8 @@ function StatesGridPage() {
     return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b));
   }, [districtsGeo]);
 
-  console.log("stateGroups", stateGroups);
-
   return (
     <div className="grid-page">
-      <Button variant="ghost" onClick={() => navigate("/")}>
-        <FaArrowLeft /> Back
-      </Button>
       <h1>Pick a State</h1>
       <p className="home-subtitle">
         Click a state to start guessing its districts
