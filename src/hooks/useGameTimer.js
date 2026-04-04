@@ -19,7 +19,9 @@ export function useGameTimer(duration) {
   }, [duration]);
 
   const isOver = timeLeft === 0;
-  const formatted = `${String(Math.floor(timeLeft / 60)).padStart(2, "0")}:${String(timeLeft % 60).padStart(2, "0")}`;
+  const formatted = duration
+    ? `${String(Math.floor(timeLeft / 60)).padStart(2, "0")}:${String(timeLeft % 60).padStart(2, "0")}`
+    : null;
 
   return { timeLeft, isOver, formatted };
 }

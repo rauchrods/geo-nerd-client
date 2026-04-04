@@ -24,6 +24,11 @@
   font-size: 22px;
 }
 
+.game-timer--nolimit {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 @keyframes timer-pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.06); }

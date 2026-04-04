@@ -12,9 +12,9 @@ function GameTimer({ formatted, isOver, timeLeft }) {
 
   return (
     <div
-      className={`game-timer${isOver ? " game-timer--over" : isUrgent ? " game-timer--urgent" : ""}`}
+      className={`game-timer${isOver ? " game-timer--over" : isUrgent ? " game-timer--urgent" : formatted === null ? " game-timer--nolimit" : ""}`}
     >
-      {isOver ? "⏰ Time's Up!" : `⏱ ${formatted}`}
+      {isOver ? "⏰ Time's Up!" : formatted === null ? "∞ No Limit" : `⏱ ${formatted}`}
     </div>
   );
 }
