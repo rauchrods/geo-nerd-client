@@ -60,10 +60,14 @@ function UsaStatesGame() {
 
   return (
     <div className="container">
-      <Button variant="ghost" onClick={() => navigate("/")}>
-        <FaArrowLeft /> Back
-      </Button>
-      <h1>US States</h1>
+      <div className="game-header">
+        <div className="game-header__back">
+          <Button variant="ghost" onClick={() => navigate("/")}>
+            <FaArrowLeft /> Back
+          </Button>
+        </div>
+        <h1 className="game-header__title">US States</h1>
+      </div>
       <p className="score">
         Score: {score} / {total}
       </p>

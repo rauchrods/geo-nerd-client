@@ -91,10 +91,14 @@ function DistrictGame() {
 
   return (
     <div className="container">
-      <Button variant="ghost" onClick={() => navigate("/districts")}>
-        <FaArrowLeft /> Back to States
-      </Button>
-      <h1>{stateName || "Loading…"}</h1>
+      <div className="game-header">
+        <div className="game-header__back">
+          <Button variant="ghost" onClick={() => navigate("/districts")}>
+            <FaArrowLeft /> Back to States
+          </Button>
+        </div>
+        <h1 className="game-header__title">{stateName || "Loading…"}</h1>
+      </div>
       <p className="score">
         Score: {score} / {total}
       </p>
