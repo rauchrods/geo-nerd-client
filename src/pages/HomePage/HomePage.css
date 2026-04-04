@@ -36,6 +36,24 @@
   justify-content: center;
 }
 
+@media (max-width: 540px) {
+  .home-options {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .home-container {
+    padding: 24px 16px;
+    justify-content: flex-start;
+    padding-top: 48px;
+  }
+
+  .home-title {
+    font-size: 36px;
+  }
+}
+
 .home-about-link {
   margin-top: 8px;
   font-size: 13px;

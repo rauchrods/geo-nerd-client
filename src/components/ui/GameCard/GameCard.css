@@ -8,7 +8,10 @@
   border: 2px solid var(--border);
   border-radius: 16px;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s,
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s,
     background-color 0.25s;
   min-width: 200px;
 }
@@ -26,6 +29,12 @@
   border-radius: 4px;
 }
 
+.game-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .game-card__label {
   font-size: 18px;
   font-weight: 700;
@@ -35,4 +44,30 @@
 .game-card__desc {
   font-size: 13px;
   color: #888;
+}
+
+@media (max-width: 540px) {
+  .game-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    width: 100%;
+    min-width: unset;
+    text-align: left;
+  }
+
+  .game-card__icon {
+    width: 40px;
+    font-size: 30px;
+    flex-shrink: 0;
+  }
+
+  .game-card__label {
+    font-size: 16px;
+  }
+
+  .game-card__desc {
+    font-size: 12px;
+  }
 }
