@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
 import { FaArrowLeft } from "react-icons/fa";
@@ -7,10 +7,18 @@ import { toSlug } from "../../utils/helpers";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import Button from "../../components/ui/Button/Button";
+import GameTimer from "../../components/GameTimer/GameTimer";
+import { useGameTimer } from "../../hooks/useGameTimer";
 
 function DistrictGame() {
   const { stateName: stateSlug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { timeLeft, isOver, formatted } = useGameTimer(location.state?.duration ?? null);
+
+  useEffect(() => {
+    if (!location.state) { navigate("/", { replace: true }); return; }
+  }, [location.state, navigate]);
 
   const [allDistrictsGeo, setAllDistrictsGeo] = useState(null);
   const [search, setSearch] = useState("");
@@ -52,7 +60,7 @@ function DistrictGame() {
   }, [stateGeo]);
 
   const handleKeyDown = (e) => {
-    if (e.key !== "Enter" || !stateGeo || !search.trim()) return;
+    if (e.key !== "Enter" || !stateGeo || !search.trim() || isOver) return;
     const match = stateGeo.features.find(
       (f) =>
         f.properties.district.toLowerCase() === search.trim().toLowerCase(),
@@ -90,7 +98,9 @@ function DistrictGame() {
       <p className="score">
         Score: {score} / {total}
       </p>
+      <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
       <SearchInput
+        disabled={isOver}
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);

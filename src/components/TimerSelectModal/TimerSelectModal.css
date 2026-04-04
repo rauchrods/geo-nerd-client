@@ -1,0 +1,96 @@
+.timer-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: backdrop-in 0.15s ease;
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.timer-modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  width: min(460px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: modal-up 0.2s ease;
+}
+
+@keyframes modal-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.timer-modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.timer-modal-subtitle {
+  margin: -12px 0 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.timer-modal-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.timer-option-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 16px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+
+.timer-option-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px var(--accent-shadow);
+  transform: translateY(-2px);
+}
+
+.timer-option-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.timer-option-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.timer-modal-cancel {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+  text-align: center;
+}
+
+.timer-modal-cancel:hover {
+  color: var(--text);
+}

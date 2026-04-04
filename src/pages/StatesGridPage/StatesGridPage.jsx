@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { feature } from "topojson-client";
 import StateMiniMap from "../../components/StateMiniMap/StateMiniMap";
@@ -10,6 +10,12 @@ import "./StatesGridPage.css";
 function StatesGridPage() {
   const [districtsGeo, setDistrictsGeo] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const duration = location.state?.duration ?? null;
+
+  useEffect(() => {
+    if (!location.state) { navigate("/", { replace: true }); return; }
+  }, [location.state, navigate]);
 
   useEffect(() => {
     fetch("/india-states.json")
@@ -48,7 +54,7 @@ function StatesGridPage() {
           <div
             key={stateName}
             className="state-card"
-            onClick={() => navigate(`/districts/${toSlug(stateName)}`)}
+            onClick={() => navigate(`/districts/${toSlug(stateName)}`, { state: { duration } })}
           >
             <StateMiniMap features={features} />
             <p className="state-card-name">{stateName}</p>

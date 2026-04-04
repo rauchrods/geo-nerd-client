@@ -1,0 +1,30 @@
+.game-timer {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 6px 20px;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  color: var(--text);
+  margin-bottom: 8px;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.game-timer--urgent {
+  color: #e65100;
+  border-color: #e65100;
+  animation: timer-pulse 1s ease infinite;
+}
+
+.game-timer--over {
+  color: #c62828;
+  border-color: #c62828;
+  background: #ffebee;
+  font-size: 22px;
+}
+
+@keyframes timer-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}

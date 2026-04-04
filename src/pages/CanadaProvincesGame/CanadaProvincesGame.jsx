@@ -1,11 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
 import { FaArrowLeft } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import Button from "../../components/ui/Button/Button";
+import GameTimer from "../../components/GameTimer/GameTimer";
+import { useGameTimer } from "../../hooks/useGameTimer";
 
 const WIDTH = 960;
 const HEIGHT = 600;
@@ -17,6 +19,12 @@ function CanadaProvincesGame() {
   const [foundProvinces, setFoundProvinces] = useState([]);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { timeLeft, isOver, formatted } = useGameTimer(location.state?.duration ?? null);
+
+  useEffect(() => {
+    if (!location.state) { navigate("/", { replace: true }); return; }
+  }, [location.state, navigate]);
 
   useEffect(() => {
     fetch("/canada-states.json")
@@ -34,7 +42,7 @@ function CanadaProvincesGame() {
   }, [geoData]);
 
   const handleKeyDown = (e) => {
-    if (e.key !== "Enter" || !geoData || !search.trim()) return;
+    if (e.key !== "Enter" || !geoData || !search.trim() || isOver) return;
     const match = geoData.features.find(
       (f) => f.properties.NAME.toLowerCase() === search.trim().toLowerCase(),
     );
@@ -59,7 +67,9 @@ function CanadaProvincesGame() {
       <p className="score">
         Score: {score} / {total}
       </p>
+      <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
       <SearchInput
+        disabled={isOver}
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
