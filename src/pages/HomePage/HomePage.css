@@ -36,43 +36,6 @@
   justify-content: center;
 }
 
-.home-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 28px 36px;
-  background: var(--bg-surface);
-  border: 2px solid var(--border);
-  border-radius: 16px;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s,
-    background-color 0.25s;
-  min-width: 200px;
-}
-
-.home-btn:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 20px var(--accent-shadow);
-  transform: translateY(-2px);
-}
-
-.home-btn-icon {
-  font-size: 36px;
-  color: var(--accent);
-}
-
-.home-btn-label {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.home-btn-desc {
-  font-size: 13px;
-  color: #888;
-}
-
 .home-about-link {
   margin-top: 8px;
   font-size: 13px;

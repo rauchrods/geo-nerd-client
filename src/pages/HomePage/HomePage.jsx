@@ -1,12 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
-import {
-  FaMap,
-  FaLandmark,
-  FaMapMarkerAlt,
-  FaGlobe,
-  FaFlag,
-  FaInfoCircle,
-} from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
+import GameCard from "../../components/ui/GameCard/GameCard";
 import "./HomePage.css";
 
 function HomePage() {
@@ -17,34 +11,40 @@ function HomePage() {
       <h1 className="home-title">🗺️ Geo Nerd</h1>
       <p className="home-subtitle">Test your knowledge of geography!</p>
       <div className="home-options">
-        <button className="home-btn" onClick={() => navigate("/states-game")}>
-          <FaLandmark className="home-btn-icon" />
-          <span className="home-btn-label">Play Indian States</span>
-          <span className="home-btn-desc">Guess all 36 states & UTs</span>
-        </button>
-        <button className="home-btn" onClick={() => navigate("/districts")}>
-          <FaMapMarkerAlt className="home-btn-icon" />
-          <span className="home-btn-label">Play State Districts</span>
-          <span className="home-btn-desc">
-            Pick a state, guess its districts
-          </span>
-        </button>
-        <button
-          className="home-btn"
+        <GameCard
+          onClick={() => navigate("/states-game")}
+          flagSrc="https://flagcdn.com/w80/in.png"
+          flagAlt="India flag"
+          label="Play Indian States"
+          desc="Guess all 36 states & UTs"
+        />
+        <GameCard
+          onClick={() => navigate("/districts")}
+          flagSrc="https://flagcdn.com/w80/in.png"
+          flagAlt="India flag"
+          label="Play State Districts"
+          desc="Pick a state, guess its districts"
+        />
+        <GameCard
           onClick={() => navigate("/countries-game")}
-        >
-          <FaGlobe className="home-btn-icon" />
-          <span className="home-btn-label">Play World Countries</span>
-          <span className="home-btn-desc">Guess all 180 countries</span>
-        </button>
-        <button
-          className="home-btn"
+          emoji="🌍"
+          label="Play World Countries"
+          desc="Guess all 180 countries"
+        />
+        <GameCard
           onClick={() => navigate("/usa-states-game")}
-        >
-          <FaFlag className="home-btn-icon" />
-          <span className="home-btn-label">Play US States</span>
-          <span className="home-btn-desc">Guess all 50 states & DC</span>
-        </button>
+          flagSrc="https://flagcdn.com/w80/us.png"
+          flagAlt="USA flag"
+          label="Play US States"
+          desc="Guess all 50 states & DC"
+        />
+        <GameCard
+          onClick={() => navigate("/canada-provinces-game")}
+          flagSrc="https://flagcdn.com/w80/ca.png"
+          flagAlt="Canada flag"
+          label="Play Canada Provinces"
+          desc="Guess all 13 provinces & territories"
+        />
       </div>
       <Link to="/about" className="home-about-link">
         <FaInfoCircle /> About this project
