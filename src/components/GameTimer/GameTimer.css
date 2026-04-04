@@ -1,5 +1,7 @@
 .game-timer {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin: 8px auto;
   font-size: 20px;
   font-weight: 700;
   padding: 6px 20px;
@@ -7,7 +9,6 @@
   background: var(--bg-surface);
   border: 2px solid var(--border);
   color: var(--text);
-  margin-bottom: 8px;
   transition: color 0.3s, border-color 0.3s, background 0.3s;
 }
 
@@ -18,9 +19,9 @@
 }
 
 .game-timer--over {
-  color: #c62828;
-  border-color: #c62828;
-  background: #ffebee;
+  color: #ef5350;
+  border-color: #ef5350;
+  background: rgba(239, 83, 80, 0.12);
   font-size: 22px;
 }
 

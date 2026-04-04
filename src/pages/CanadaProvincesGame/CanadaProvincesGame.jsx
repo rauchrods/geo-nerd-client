@@ -68,18 +68,21 @@ function CanadaProvincesGame() {
         Score: {score} / {total}
       </p>
       <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
-      <SearchInput
-        disabled={isOver}
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setIsError(false);
-        }}
-        onKeyDown={handleKeyDown}
-        placeholder="Enter province or territory name and press Enter..."
-        isError={isError}
-      />
-      <p className="tip">Tip: Hover over a region to see its name</p>
+      {!isOver && (
+        <>
+          <SearchInput
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setIsError(false);
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter province or territory name and press Enter..."
+            isError={isError}
+          />
+          <p className="tip">Tip: Hover over a region to see its name</p>
+        </>
+      )}
 
       <div className="game-layout">
         <svg

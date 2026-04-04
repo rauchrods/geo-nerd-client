@@ -66,18 +66,21 @@ function IndianStatesGame() {
         Score: {score} / {total}
       </p>
       <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
-      <SearchInput
-        disabled={isOver}
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setIsError(false);
-        }}
-        onKeyDown={handleKeyDown}
-        placeholder="Enter state name and press Enter..."
-        isError={isError}
-      />
-      <p className="tip">Tip: Hover over a state to see its name</p>
+      {!isOver && (
+        <>
+          <SearchInput
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setIsError(false);
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter state name and press Enter..."
+            isError={isError}
+          />
+          <p className="tip">Tip: Hover over a state to see its name</p>
+        </>
+      )}
 
       <div className="game-layout">
         <svg

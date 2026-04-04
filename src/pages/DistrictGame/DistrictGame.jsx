@@ -99,18 +99,21 @@ function DistrictGame() {
         Score: {score} / {total}
       </p>
       <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
-      <SearchInput
-        disabled={isOver}
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setIsError(false);
-        }}
-        onKeyDown={handleKeyDown}
-        placeholder="Enter district name and press Enter..."
-        isError={isError}
-      />
-      <p className="tip">Tip: Hover over a district to see its name</p>
+      {!isOver && (
+        <>
+          <SearchInput
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setIsError(false);
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter district name and press Enter..."
+            isError={isError}
+          />
+          <p className="tip">Tip: Hover over a district to see its name</p>
+        </>
+      )}
 
       <div className="game-layout">
         <svg viewBox="0 0 700 600" style={{ width: "100%", maxWidth: 700, height: "auto" }}>

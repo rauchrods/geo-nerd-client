@@ -29,6 +29,8 @@
   flex-direction: column;
   gap: 6px;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .found-list li {
