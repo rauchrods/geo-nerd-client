@@ -1,8 +1,6 @@
-import { useEffect, useState, useTransition } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaTrophy } from "react-icons/fa";
-import Button from "../../components/ui/Button/Button";
-import { fetchLeaderboard, GAME_LABELS } from "../../utils/firestore";
+import { useTransition, useState, useEffect } from "react";
+import { FaTrophy } from "react-icons/fa";
+import { GAME_LABELS, fetchLeaderboard } from "../../utils/firestore";
 import "./LeaderboardPage.css";
 
 const GAMES = Object.keys(GAME_LABELS);
@@ -17,11 +15,9 @@ function formatTime(ts) {
 }
 
 function LeaderboardPage() {
-  const navigate = useNavigate();
   const [activeGame, setActiveGame] = useState(GAMES[0]);
   const [rows, setRows] = useState([]);
   const [isPending, startTransition] = useTransition();
-
   useEffect(() => {
     startTransition(async () => {
       try {
@@ -37,11 +33,6 @@ function LeaderboardPage() {
   return (
     <div className="lb-container">
       <div className="game-header">
-        <div className="game-header__back">
-          <Button variant="ghost" onClick={() => navigate("/")}>
-            <FaArrowLeft /> Back
-          </Button>
-        </div>
         <h1 className="game-header__title">
           <FaTrophy className="lb-trophy" /> Leaderboard
         </h1>

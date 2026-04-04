@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  padding: 32px;
+  padding: 96px 32px 32px;
 }
 
 .home-title {

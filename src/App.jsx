@@ -2,8 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
-import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
-import UserMenu from "./components/UserMenu/UserMenu";
+import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import IndianStatesGame from "./pages/IndianStatesGame/IndianStatesGame";
 import StatesGridPage from "./pages/StatesGridPage/StatesGridPage";
@@ -19,8 +18,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <BrowserRouter>
-          <UserMenu />
-          <ThemeToggle />
+          <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/states-game" element={<IndianStatesGame />} />

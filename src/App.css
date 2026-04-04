@@ -1,21 +1,14 @@
 /* ── Shared game styles (used by StatesGame & DistrictGame) ── */
 .container {
   text-align: center;
-  padding: 16px;
+  padding: 80px 16px 16px;
 }
 
 .game-header {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
-  min-height: 40px;
-}
-
-.game-header__back {
-  position: absolute;
-  left: 0;
 }
 
 .game-header__title {
