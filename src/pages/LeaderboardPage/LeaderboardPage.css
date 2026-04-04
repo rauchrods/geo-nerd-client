@@ -41,6 +41,40 @@
   background: var(--accent-shadow);
 }
 
+/* ── Sort controls ── */
+.lb-sort {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.lb-sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.lb-sort-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lb-sort-btn--active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-shadow);
+}
+
 /* ── Table ── */
 .lb-table-wrap {
   overflow-x: auto;

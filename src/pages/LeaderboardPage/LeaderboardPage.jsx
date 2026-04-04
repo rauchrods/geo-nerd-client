@@ -1,5 +1,5 @@
-import { useTransition, useState, useEffect } from "react";
-import { FaTrophy } from "react-icons/fa";
+import { useTransition, useState, useEffect, useMemo } from "react";
+import { FaTrophy, FaSortAmountDown, FaCalendarAlt } from "react-icons/fa";
 import { GAME_LABELS, fetchLeaderboard } from "../../utils/firestore";
 import "./LeaderboardPage.css";
 
@@ -17,6 +17,7 @@ function formatTime(ts) {
 function LeaderboardPage() {
   const [activeGame, setActiveGame] = useState(GAMES[0]);
   const [rows, setRows] = useState([]);
+  const [sortBy, setSortBy] = useState("score");
   const [isPending, startTransition] = useTransition();
   useEffect(() => {
     startTransition(async () => {
@@ -29,6 +30,17 @@ function LeaderboardPage() {
       }
     });
   }, [activeGame]);
+
+  const sortedRows = useMemo(() => {
+    if (sortBy === "date") {
+      return [...rows].sort((a, b) => {
+        const ta = a.playedAt?.toMillis?.() ?? a.playedAt ?? 0;
+        const tb = b.playedAt?.toMillis?.() ?? b.playedAt ?? 0;
+        return tb - ta;
+      });
+    }
+    return rows; // already sorted by score desc from Firestore
+  }, [rows, sortBy]);
 
   return (
     <div className="lb-container">
@@ -51,6 +63,22 @@ function LeaderboardPage() {
         ))}
       </div>
 
+      {/* Sort controls */}
+      <div className="lb-sort">
+        <button
+          className={`lb-sort-btn${sortBy === "score" ? " lb-sort-btn--active" : ""}`}
+          onClick={() => setSortBy("score")}
+        >
+          <FaSortAmountDown /> High Score
+        </button>
+        <button
+          className={`lb-sort-btn${sortBy === "date" ? " lb-sort-btn--active" : ""}`}
+          onClick={() => setSortBy("date")}
+        >
+          <FaCalendarAlt /> Recent
+        </button>
+      </div>
+
       {/* Table */}
       <div className="lb-table-wrap">
         {isPending ? (
@@ -70,10 +98,12 @@ function LeaderboardPage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, i) => (
-                <tr key={row.id} className={i < 3 ? `lb-row--top${i + 1}` : ""}>
+              {sortedRows.map((row, i) => (
+                <tr key={row.id} className={sortBy === "score" && i < 3 ? `lb-row--top${i + 1}` : ""}>
                   <td className="lb-rank">
-                    {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : i + 1}
+                    {sortBy === "score"
+                      ? i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : i + 1
+                      : i + 1}
                   </td>
                   <td className="lb-player">
                     {row.photoURL && (
