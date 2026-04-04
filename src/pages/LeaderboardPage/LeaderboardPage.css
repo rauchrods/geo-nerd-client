@@ -1,0 +1,129 @@
+.lb-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.lb-trophy {
+  color: #f59e0b;
+  margin-right: 8px;
+}
+
+/* ── Game tabs ── */
+.lb-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.lb-tab {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 2px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.lb-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lb-tab--active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-shadow);
+}
+
+/* ── Table ── */
+.lb-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.lb-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
+  font-size: 15px;
+}
+
+.lb-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lb-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.lb-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+}
+
+.lb-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.lb-table tbody tr:hover td {
+  background: var(--accent-shadow);
+}
+
+/* Top rank highlights */
+.lb-row--top1 td { background: rgba(245, 158, 11, 0.08); }
+.lb-row--top2 td { background: rgba(148, 163, 184, 0.08); }
+.lb-row--top3 td { background: rgba(180, 120, 60, 0.08); }
+
+.lb-rank {
+  font-weight: 700;
+  font-size: 16px;
+  width: 40px;
+}
+
+.lb-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.lb-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.lb-score {
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.lb-pct {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.lb-dur,
+.lb-date {
+  color: var(--text-muted);
+  font-size: 13px;
+}

@@ -9,6 +9,7 @@ import FoundList from "../../components/FoundList/FoundList";
 import Button from "../../components/ui/Button/Button";
 import GameTimer from "../../components/GameTimer/GameTimer";
 import { useGameTimer } from "../../hooks/useGameTimer";
+import { useScoreSaver } from "../../hooks/useScoreSaver";
 
 function DistrictGame() {
   const { stateName: stateSlug } = useParams();
@@ -75,7 +76,9 @@ function DistrictGame() {
     }
   };
 
-  const total = stateGeo ? stateGeo.features.length : "…";
+  const total = stateGeo ? stateGeo.features.length : 0;
+
+  useScoreSaver({ isOver, score, total, game: "districts", duration: location.state?.duration ?? null });
 
   if (allDistrictsGeo && !stateName) {
     return (

@@ -8,6 +8,7 @@ import FoundList from "../../components/FoundList/FoundList";
 import Button from "../../components/ui/Button/Button";
 import GameTimer from "../../components/GameTimer/GameTimer";
 import { useGameTimer } from "../../hooks/useGameTimer";
+import { useScoreSaver } from "../../hooks/useScoreSaver";
 
 const WIDTH = 960;
 const HEIGHT = 600;
@@ -57,6 +58,8 @@ function CanadaProvincesGame() {
   };
 
   const total = geoData ? geoData.features.length : 13;
+
+  useScoreSaver({ isOver, score, total, game: "canada-provinces", duration: location.state?.duration ?? null });
 
   return (
     <div className="container">

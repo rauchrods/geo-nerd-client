@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaTrophy } from "react-icons/fa";
 import GameCard from "../../components/ui/GameCard/GameCard";
 import TimerSelectModal from "../../components/TimerSelectModal/TimerSelectModal";
 import "./HomePage.css";
@@ -53,6 +53,9 @@ function HomePage() {
       </div>
       <Link to="/about" className="home-about-link">
         <FaInfoCircle /> About this project
+      </Link>
+      <Link to="/leaderboard" className="home-about-link">
+        <FaTrophy /> Leaderboard
       </Link>
 
       {pendingRoute && (

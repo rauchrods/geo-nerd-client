@@ -8,6 +8,7 @@ import FoundList from "../../components/FoundList/FoundList";
 import Button from "../../components/ui/Button/Button";
 import GameTimer from "../../components/GameTimer/GameTimer";
 import { useGameTimer } from "../../hooks/useGameTimer";
+import { useScoreSaver } from "../../hooks/useScoreSaver";
 import "./IndianStatesGame.css";
 
 function IndianStatesGame() {
@@ -55,6 +56,8 @@ function IndianStatesGame() {
   }, []);
 
   const total = geoData ? geoData.features.length : 36;
+
+  useScoreSaver({ isOver, score, total, game: "indian-states", duration: location.state?.duration ?? null });
 
   return (
     <div className="container">

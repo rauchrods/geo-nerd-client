@@ -8,6 +8,7 @@ import FoundList from "../../components/FoundList/FoundList";
 import Button from "../../components/ui/Button/Button";
 import GameTimer from "../../components/GameTimer/GameTimer";
 import { useGameTimer } from "../../hooks/useGameTimer";
+import { useScoreSaver } from "../../hooks/useScoreSaver";
 import "./CountriesGame.css";
 
 const WIDTH = 980;
@@ -63,6 +64,8 @@ function CountriesGame() {
   };
 
   const total = geoData ? geoData.features.length : 180;
+
+  useScoreSaver({ isOver, score, total, game: "world-countries", duration: location.state?.duration ?? null });
 
   return (
     <div className="container">
