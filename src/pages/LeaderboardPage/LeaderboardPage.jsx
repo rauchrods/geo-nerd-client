@@ -1,6 +1,8 @@
 import { useTransition, useState, useEffect, useMemo } from "react";
 import { FaTrophy, FaSortAmountDown, FaCalendarAlt } from "react-icons/fa";
 import { GAME_LABELS, GAME_FLAGS, fetchLeaderboard } from "../../utils/firestore";
+import { useAuth } from "../../context/useAuth";
+import Button from "../../components/ui/Button/Button";
 import "./LeaderboardPage.css";
 
 const GAMES = Object.keys(GAME_LABELS);
@@ -15,6 +17,7 @@ function formatTime(ts) {
 }
 
 function LeaderboardPage() {
+  const { user, signIn } = useAuth();
   const [activeGame, setActiveGame] = useState(GAMES[0]);
   const [rows, setRows] = useState([]);
   const [sortBy, setSortBy] = useState("score");
@@ -41,6 +44,24 @@ function LeaderboardPage() {
     }
     return rows; // already sorted by score desc from Firestore
   }, [rows, sortBy]);
+
+  if (user === undefined) return null;
+
+  if (!user) {
+    return (
+      <div className="lb-container">
+        <div className="game-header">
+          <h1 className="game-header__title">
+            <FaTrophy className="lb-trophy" /> Leaderboard
+          </h1>
+        </div>
+        <div className="lb-auth-gate">
+          <p className="lb-auth-gate__msg">Sign in to view the leaderboard and compete with others.</p>
+          <Button variant="solid" onClick={signIn}>Sign in with Google</Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="lb-container">

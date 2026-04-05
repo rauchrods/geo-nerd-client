@@ -9,6 +9,21 @@
   margin-right: 8px;
 }
 
+/* ── Auth gate ── */
+.lb-auth-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.lb-auth-gate__msg {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
 /* ── Game tabs ── */
 .lb-tabs {
   display: flex;
@@ -30,7 +45,9 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 
 .lb-tab-flag {
@@ -75,7 +92,10 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
 }
 
 .lb-sort-btn:hover {
@@ -135,9 +155,15 @@
 }
 
 /* Top rank highlights */
-.lb-row--top1 td { background: rgba(245, 158, 11, 0.08); }
-.lb-row--top2 td { background: rgba(148, 163, 184, 0.08); }
-.lb-row--top3 td { background: rgba(180, 120, 60, 0.08); }
+.lb-row--top1 td {
+  background: rgba(245, 158, 11, 0.08);
+}
+.lb-row--top2 td {
+  background: rgba(148, 163, 184, 0.08);
+}
+.lb-row--top3 td {
+  background: rgba(180, 120, 60, 0.08);
+}
 
 .lb-rank {
   font-weight: 700;
