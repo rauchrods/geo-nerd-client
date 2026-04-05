@@ -19,6 +19,9 @@
 }
 
 .lb-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 6px 14px;
   border-radius: 999px;
   border: 2px solid var(--border);
@@ -28,6 +31,17 @@
   font-weight: 600;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
+}
+
+.lb-tab-flag {
+  border-radius: 2px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.lb-tab-globe {
+  font-size: 15px;
+  line-height: 1;
 }
 
 .lb-tab:hover {

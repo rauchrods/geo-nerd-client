@@ -1,6 +1,6 @@
 import { useTransition, useState, useEffect, useMemo } from "react";
 import { FaTrophy, FaSortAmountDown, FaCalendarAlt } from "react-icons/fa";
-import { GAME_LABELS, fetchLeaderboard } from "../../utils/firestore";
+import { GAME_LABELS, GAME_FLAGS, fetchLeaderboard } from "../../utils/firestore";
 import "./LeaderboardPage.css";
 
 const GAMES = Object.keys(GAME_LABELS);
@@ -58,6 +58,17 @@ function LeaderboardPage() {
             className={`lb-tab${activeGame === g ? " lb-tab--active" : ""}`}
             onClick={() => setActiveGame(g)}
           >
+            {GAME_FLAGS[g] ? (
+              <img
+                src={`https://flagcdn.com/20x15/${GAME_FLAGS[g]}.png`}
+                width="20"
+                height="15"
+                alt={GAME_LABELS[g]}
+                className="lb-tab-flag"
+              />
+            ) : (
+              <span className="lb-tab-globe">🌍</span>
+            )}
             {GAME_LABELS[g]}
           </button>
         ))}

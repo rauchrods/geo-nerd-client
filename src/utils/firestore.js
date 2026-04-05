@@ -11,11 +11,11 @@ export async function saveScore({ uid, displayName, photoURL, game, score, total
   await addDoc(collection(db, SCORES_COL), {
     uid,
     displayName,
-    photoURL: photoURL ?? null,
+    photoURL: photoURL ? photoURL : "https://www.gravatar.com/avatar/?d=mp&f=y",
     game,
     score,
     total,
-    duration: duration ?? null, // null = no limit
+    duration: duration ? duration : null,
     pct: Math.round((score / total) * 100),
     playedAt: Date.now(),
   });
@@ -52,9 +52,17 @@ export async function fetchGlobalLeaderboard(count = 50) {
 }
 
 export const GAME_LABELS = {
-  "indian-states": "🇮🇳 Indian States",
-  "districts": "🇮🇳 State Districts",
-  "world-countries": "🌍 World Countries",
-  "usa-states": "🇺🇸 US States",
-  "canada-provinces": "🇨🇦 Canada Provinces",
+  "indian-states": "Indian States",
+  "districts": "State Districts",
+  "world-countries": "World Countries",
+  "usa-states": "US States",
+  "canada-provinces": "Canada Provinces",
+};
+
+export const GAME_FLAGS = {
+  "indian-states": "in",
+  "districts": "in",
+  "world-countries": null,
+  "usa-states": "us",
+  "canada-provinces": "ca",
 };
