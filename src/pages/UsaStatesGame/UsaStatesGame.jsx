@@ -19,10 +19,15 @@ function UsaStatesGame() {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(location.state?.duration ?? null);
+  const { timeLeft, isOver, formatted } = useGameTimer(
+    location.state?.duration ?? null,
+  );
 
   useEffect(() => {
-    if (!location.state) { navigate("/", { replace: true }); return; }
+    if (!location.state) {
+      navigate("/", { replace: true });
+      return;
+    }
   }, [location.state, navigate]);
 
   useEffect(() => {
@@ -57,7 +62,21 @@ function UsaStatesGame() {
 
   const total = geoData ? geoData.features.length : 51;
 
-  useScoreSaver({ isOver, score, total, game: "usa-states", duration: location.state?.duration ?? null });
+  useScoreSaver({
+    isOver,
+    score,
+    total,
+    game: "usa-states",
+    duration: location.state?.duration ?? null,
+  });
+
+  const isGameDone = isOver || (geoData && score === total);
+
+  useEffect(() => {
+    if (!isGameDone) return;
+    const id = setTimeout(() => navigate("/leaderboard"), 3000);
+    return () => clearTimeout(id);
+  }, [isGameDone, navigate]);
 
   return (
     <div className="container">
@@ -105,7 +124,9 @@ function UsaStatesGame() {
                 <path
                   key={i}
                   d={pathFn(d)}
-                  className={isFound ? "found" : isMatch ? "highlight" : "state"}
+                  className={
+                    isFound ? "found" : isMatch ? "highlight" : "state"
+                  }
                 >
                   <title>{stateName}</title>
                 </path>

@@ -63,7 +63,21 @@ function CountriesGame() {
 
   const total = geoData ? geoData.features.length : 180;
 
-  useScoreSaver({ isOver, score, total, game: "world-countries", duration: location.state?.duration ?? null });
+  useScoreSaver({
+    isOver,
+    score,
+    total,
+    game: "world-countries",
+    duration: location.state?.duration ?? null,
+  });
+
+  const isGameDone = isOver || (geoData && score === total);
+
+  useEffect(() => {
+    if (!isGameDone) return;
+    const id = setTimeout(() => navigate("/leaderboard"), 3000);
+    return () => clearTimeout(id);
+  }, [isGameDone, navigate]);
 
   return (
     <div className="container">

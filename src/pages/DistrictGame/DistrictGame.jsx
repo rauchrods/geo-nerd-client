@@ -13,10 +13,15 @@ function DistrictGame() {
   const { stateName: stateSlug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(location.state?.duration ?? null);
+  const { timeLeft, isOver, formatted } = useGameTimer(
+    location.state?.duration ?? null,
+  );
 
   useEffect(() => {
-    if (!location.state) { navigate("/", { replace: true }); return; }
+    if (!location.state) {
+      navigate("/", { replace: true });
+      return;
+    }
   }, [location.state, navigate]);
 
   const [allDistrictsGeo, setAllDistrictsGeo] = useState(null);
@@ -76,8 +81,21 @@ function DistrictGame() {
 
   const total = stateGeo ? stateGeo.features.length : 0;
 
-  useScoreSaver({ isOver, score, total, game: "districts", duration: location.state?.duration ?? null });
+  useScoreSaver({
+    isOver,
+    score,
+    total,
+    game: "districts",
+    duration: location.state?.duration ?? null,
+  });
 
+  const isGameDone = isOver || (stateGeo && score === total);
+
+  useEffect(() => {
+    if (!isGameDone) return;
+    const id = setTimeout(() => navigate("/leaderboard"), 3000);
+    return () => clearTimeout(id);
+  }, [isGameDone, navigate]);
   if (allDistrictsGeo && !stateName) {
     return (
       <div className="container">
@@ -113,7 +131,10 @@ function DistrictGame() {
       )}
 
       <div className="game-layout">
-        <svg viewBox="0 0 700 600" style={{ width: "100%", maxWidth: 700, height: "auto" }}>
+        <svg
+          viewBox="0 0 700 600"
+          style={{ width: "100%", maxWidth: 700, height: "auto" }}
+        >
           {stateGeo &&
             pathFn &&
             stateGeo.features.map((d, i) => {

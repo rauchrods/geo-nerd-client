@@ -59,6 +59,14 @@ function CanadaProvincesGame() {
 
   useScoreSaver({ isOver, score, total, game: "canada-provinces", duration: location.state?.duration ?? null });
 
+  const isGameDone = isOver || (geoData && score === total);
+
+  useEffect(() => {
+    if (!isGameDone) return;
+    const id = setTimeout(() => navigate("/leaderboard"), 3000);
+    return () => clearTimeout(id);
+  }, [isGameDone, navigate]);
+
   return (
     <div className="container">
       <div className="game-header">
