@@ -13,7 +13,7 @@ function DistrictGame() {
   const { stateName: stateSlug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(
+  const { timeLeft, isOver, formatted, addTime } = useGameTimer(
     location.state?.duration ?? null,
   );
 
@@ -72,6 +72,7 @@ function DistrictGame() {
     if (match && !foundDistricts.includes(match.properties.district)) {
       setFoundDistricts((prev) => [...prev, match.properties.district]);
       setScore((prev) => prev + 1);
+      if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
     } else {
@@ -87,6 +88,7 @@ function DistrictGame() {
     total,
     game: "districts",
     duration: location.state?.duration ?? null,
+    mode: location.state?.mode ?? "classic",
   });
 
   const isGameDone = isOver || (stateGeo && score === total);

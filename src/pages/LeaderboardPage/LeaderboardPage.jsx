@@ -7,7 +7,8 @@ import "./LeaderboardPage.css";
 
 const GAMES = Object.keys(GAME_LABELS);
 
-function formatDuration(d) {
+function formatDuration(d, mode) {
+  if (mode === "survival") return "⚡ Survival";
   if (!d) return "∞";
   return `${Math.floor(d / 60)}m`;
 }
@@ -125,6 +126,7 @@ function LeaderboardPage() {
                 <th>Player</th>
                 <th>Score</th>
                 <th>%</th>
+                <th>Mode</th>
                 <th>Timer</th>
                 <th>Date</th>
               </tr>
@@ -145,7 +147,8 @@ function LeaderboardPage() {
                   </td>
                   <td className="lb-score">{row.score} / {row.total}</td>
                   <td className="lb-pct">{row.pct}%</td>
-                  <td className="lb-dur">{formatDuration(row.duration)}</td>
+                  <td className="lb-mode">{row.mode === "survival" ? "⚡ Survival" : "🕐 Classic"}</td>
+                  <td className="lb-dur">{formatDuration(row.duration, row.mode)}</td>
                   <td className="lb-date">{formatTime(row.playedAt)}</td>
                 </tr>
               ))}

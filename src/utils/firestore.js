@@ -7,15 +7,16 @@ const SCORES_COL = "scores";
  * Save a completed game score.
  * @param {{ uid, displayName, photoURL, game, score, total, duration }} data
  */
-export async function saveScore({ uid, displayName, photoURL, game, score, total, duration }) {
+export async function saveScore({ uid, displayName, photoURL, game, score, total, duration, mode }) {
   await addDoc(collection(db, SCORES_COL), {
     uid,
     displayName,
-    photoURL: photoURL ? photoURL : "https://www.gravatar.com/avatar/?d=mp&f=y",
+    photoURL: photoURL ?? "https://www.gravatar.com/avatar/?d=mp&f=y",
     game,
     score,
     total,
-    duration: duration ? duration : null,
+    duration: duration ?? null,
+    mode: mode ?? "classic",
     pct: Math.round((score / total) * 100),
     playedAt: Date.now(),
   });

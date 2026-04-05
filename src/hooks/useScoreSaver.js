@@ -8,7 +8,7 @@ import { saveScore } from "../utils/firestore";
  *
  * @param {{ isOver: boolean, score: number, total: number, game: string, duration: number|null }} params
  */
-export function useScoreSaver({ isOver, score, total, game, duration }) {
+export function useScoreSaver({ isOver, score, total, game, duration, mode }) {
   const { user } = useAuth();
   const saved = useRef(false);
 
@@ -25,6 +25,7 @@ export function useScoreSaver({ isOver, score, total, game, duration }) {
       score,
       total,
       duration,
+      mode,
     }).catch(console.error);
-  }, [isFinished, user, score, total, game, duration]);
+  }, [isFinished, user, score, total, game, duration, mode]);
 }

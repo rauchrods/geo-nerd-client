@@ -20,7 +20,7 @@ function CountriesGame() {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(
+  const { timeLeft, isOver, formatted, addTime } = useGameTimer(
     location.state?.duration,
   );
 
@@ -54,6 +54,7 @@ function CountriesGame() {
     if (match && !foundCountries.includes(match.properties.name)) {
       setFoundCountries((prev) => [...prev, match.properties.name]);
       setScore((prev) => prev + 1);
+      if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
     } else {
@@ -69,6 +70,7 @@ function CountriesGame() {
     total,
     game: "world-countries",
     duration: location.state?.duration ?? null,
+    mode: location.state?.mode ?? "classic",
   });
 
   const isGameDone = isOver || (geoData && score === total);

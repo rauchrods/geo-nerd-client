@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TimerSelectModal.css";
 
-const TIMER_OPTIONS = [
-  { label: "1 Min", desc: "Quick round", seconds: 60 },
-  { label: "2 Min", desc: "Standard game", seconds: 120 },
-  { label: "5 Min", desc: "Relaxed pace", seconds: 300 },
-  { label: "10 Min", desc: "Take your time", seconds: 600 },
-  { label: "No Limit", desc: "Play at your own pace", seconds: null },
+const CLASSIC_OPTIONS = [
+  { label: "1 Min", seconds: 60 },
+  { label: "2 Min", seconds: 120 },
+  { label: "5 Min", seconds: 300 },
+  { label: "10 Min", seconds: 600 },
 ];
 
 function TimerSelectModal({ route, onClose }) {
@@ -21,27 +20,39 @@ function TimerSelectModal({ route, onClose }) {
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  const handleSelect = (seconds) => {
-    navigate(route, { state: { duration: seconds } });
+  const handleSelect = (seconds, mode) => {
+    navigate(route, { state: { duration: seconds, mode } });
   };
 
   return (
     <div className="timer-modal-backdrop" onClick={onClose}>
       <div className="timer-modal" onClick={(e) => e.stopPropagation()}>
-        <h2 className="timer-modal-title">Choose Your Timer</h2>
-        <p className="timer-modal-subtitle">How long do you want to play?</p>
+        <h2 className="timer-modal-title">Choose a Mode</h2>
+
+        {/* Survival mode */}
+        <button
+          className="timer-option-btn timer-option-btn--survival"
+          onClick={() => handleSelect(30, "survival")}
+        >
+          <span className="timer-option-label">⚡ Survival</span>
+          <span className="timer-option-desc">30s start — each correct answer adds +5s</span>
+        </button>
+
+        {/* Classic timer options */}
+        <p className="timer-modal-subtitle">Or pick a fixed timer</p>
         <div className="timer-modal-options">
-          {TIMER_OPTIONS.map(({ label, desc, seconds }) => (
+          {CLASSIC_OPTIONS.map(({ label, seconds }) => (
             <button
               key={label}
               className="timer-option-btn"
-              onClick={() => handleSelect(seconds)}
+              onClick={() => handleSelect(seconds, "classic")}
             >
               <span className="timer-option-label">{label}</span>
-              <span className="timer-option-desc">{desc}</span>
+              <span className="timer-option-desc">Classic</span>
             </button>
           ))}
         </div>
+
         <button className="timer-modal-cancel" onClick={onClose}>
           Cancel
         </button>

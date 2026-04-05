@@ -19,7 +19,7 @@ function UsaStatesGame() {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(
+  const { timeLeft, isOver, formatted, addTime } = useGameTimer(
     location.state?.duration ?? null,
   );
 
@@ -53,6 +53,7 @@ function UsaStatesGame() {
     if (match && !foundStates.includes(match.properties.name)) {
       setFoundStates((prev) => [...prev, match.properties.name]);
       setScore((prev) => prev + 1);
+      if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
     } else {
@@ -68,6 +69,7 @@ function UsaStatesGame() {
     total,
     game: "usa-states",
     duration: location.state?.duration ?? null,
+    mode: location.state?.mode ?? "classic",
   });
 
   const isGameDone = isOver || (geoData && score === total);

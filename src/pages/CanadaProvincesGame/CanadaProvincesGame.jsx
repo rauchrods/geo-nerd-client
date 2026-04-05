@@ -19,10 +19,15 @@ function CanadaProvincesGame() {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(location.state?.duration ?? null);
+  const { timeLeft, isOver, formatted, addTime } = useGameTimer(
+    location.state?.duration ?? null,
+  );
 
   useEffect(() => {
-    if (!location.state) { navigate("/", { replace: true }); return; }
+    if (!location.state) {
+      navigate("/", { replace: true });
+      return;
+    }
   }, [location.state, navigate]);
 
   useEffect(() => {
@@ -48,6 +53,7 @@ function CanadaProvincesGame() {
     if (match && !foundProvinces.includes(match.properties.NAME)) {
       setFoundProvinces((prev) => [...prev, match.properties.NAME]);
       setScore((prev) => prev + 1);
+      if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
     } else {
@@ -57,7 +63,14 @@ function CanadaProvincesGame() {
 
   const total = geoData ? geoData.features.length : 13;
 
-  useScoreSaver({ isOver, score, total, game: "canada-provinces", duration: location.state?.duration ?? null });
+  useScoreSaver({
+    isOver,
+    score,
+    total,
+    game: "canada-provinces",
+    duration: location.state?.duration ?? null,
+    mode: location.state?.mode ?? "classic",
+  });
 
   const isGameDone = isOver || (geoData && score === total);
 
@@ -70,7 +83,9 @@ function CanadaProvincesGame() {
   return (
     <div className="container">
       <div className="game-header">
-        <h1 className="game-header__title">Canada Provinces &amp; Territories</h1>
+        <h1 className="game-header__title">
+          Canada Provinces &amp; Territories
+        </h1>
       </div>
       <p className="score">
         Score: {score} / {total}
@@ -113,7 +128,9 @@ function CanadaProvincesGame() {
                 <path
                   key={i}
                   d={pathFn(d)}
-                  className={isFound ? "found" : isMatch ? "highlight" : "state"}
+                  className={
+                    isFound ? "found" : isMatch ? "highlight" : "state"
+                  }
                 >
                   <title>{name}</title>
                 </path>

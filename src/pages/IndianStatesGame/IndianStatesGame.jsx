@@ -17,7 +17,7 @@ function IndianStatesGame() {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { timeLeft, isOver, formatted } = useGameTimer(
+  const { timeLeft, isOver, formatted, addTime } = useGameTimer(
     location.state?.duration ?? null,
   );
 
@@ -42,6 +42,7 @@ function IndianStatesGame() {
     if (match && !foundStates.includes(match.properties.st_nm)) {
       setFoundStates((prev) => [...prev, match.properties.st_nm]);
       setScore((prev) => prev + 1);
+      if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
     } else {
@@ -66,6 +67,7 @@ function IndianStatesGame() {
     total,
     game: "indian-states",
     duration: location.state?.duration ?? null,
+    mode: location.state?.mode ?? "classic",
   });
 
   const isGameDone = isOver || (geoData && score === total);

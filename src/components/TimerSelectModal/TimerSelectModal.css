@@ -70,6 +70,16 @@
   transform: translateY(-2px);
 }
 
+.timer-option-btn--survival {
+  grid-column: 1 / -1;
+  border-color: var(--accent);
+  background: var(--accent-shadow);
+}
+
+.timer-option-btn--survival:hover {
+  box-shadow: 0 4px 20px var(--accent-shadow);
+}
+
 .timer-option-label {
   font-size: 18px;
   font-weight: 700;
