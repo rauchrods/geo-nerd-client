@@ -6,6 +6,7 @@ import { toSlug } from "../../utils/helpers";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import GameTimer from "../../components/GameTimer/GameTimer";
+import HintModal from "../../components/HintModal/HintModal";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
 
@@ -29,6 +30,7 @@ function DistrictGame() {
   const [score, setScore] = useState(0);
   const [foundDistricts, setFoundDistricts] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [hintTarget, setHintTarget] = useState(null);
 
   useEffect(() => {
     fetch("/india-states.json")
@@ -98,6 +100,13 @@ function DistrictGame() {
     const id = setTimeout(() => navigate("/leaderboard"), 3000);
     return () => clearTimeout(id);
   }, [isGameDone, navigate]);
+
+  const handleHintConfirm = () => {
+    if (!hintTarget) return;
+    setFoundDistricts((prev) => [...prev, hintTarget]);
+    setScore((prev) => prev - 1);
+    setHintTarget(null);
+  };
   if (allDistrictsGeo && !stateName) {
     return (
       <div className="container">
@@ -130,7 +139,7 @@ function DistrictGame() {
                 placeholder="Enter district name and press Enter..."
                 isError={isError}
               />
-              <p className="tip">Tip: Hover over a district to see its name</p>
+              <p className="tip">Tip: Click a district to reveal it as a hint (−1 point)</p>
             </>
           )}
           <FoundList items={foundDistricts} />
@@ -154,14 +163,21 @@ function DistrictGame() {
                     className={
                       isFound ? "found" : isMatch ? "highlight" : "state"
                     }
-                  >
-                    <title>{districtName}</title>
-                  </path>
+                    onClick={() => {
+                      if (!isFound && !isOver) setHintTarget(districtName);
+                    }}
+                  />
                 );
               })}
           </svg>
         </div>
       </div>
+      {hintTarget && (
+        <HintModal
+          onConfirm={handleHintConfirm}
+          onCancel={() => setHintTarget(null)}
+        />
+      )}
     </div>
   );
 }

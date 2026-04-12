@@ -5,6 +5,7 @@ import { feature } from "topojson-client";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import GameTimer from "../../components/GameTimer/GameTimer";
+import HintModal from "../../components/HintModal/HintModal";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
 
@@ -17,6 +18,7 @@ function UsaStatesGame() {
   const [score, setScore] = useState(0);
   const [foundStates, setFoundStates] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [hintTarget, setHintTarget] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { timeLeft, isOver, formatted, addTime } = useGameTimer(
@@ -80,6 +82,13 @@ function UsaStatesGame() {
     return () => clearTimeout(id);
   }, [isGameDone, navigate]);
 
+  const handleHintConfirm = () => {
+    if (!hintTarget) return;
+    setFoundStates((prev) => [...prev, hintTarget]);
+    setScore((prev) => prev - 1);
+    setHintTarget(null);
+  };
+
   return (
     <div className="container">
       <div className="game-header">
@@ -103,7 +112,7 @@ function UsaStatesGame() {
                 placeholder="Enter state name and press Enter..."
                 isError={isError}
               />
-              <p className="tip">Tip: Hover over a state to see its name</p>
+              <p className="tip">Tip: Click a state to reveal it as a hint (−1 point)</p>
             </>
           )}
           <FoundList items={foundStates} />
@@ -127,14 +136,21 @@ function UsaStatesGame() {
                     className={
                       isFound ? "found" : isMatch ? "highlight" : "state"
                     }
-                  >
-                    <title>{stateName}</title>
-                  </path>
+                    onClick={() => {
+                      if (!isFound && !isOver) setHintTarget(stateName);
+                    }}
+                  />
                 );
               })}
           </svg>
         </div>
       </div>
+      {hintTarget && (
+        <HintModal
+          onConfirm={handleHintConfirm}
+          onCancel={() => setHintTarget(null)}
+        />
+      )}
     </div>
   );
 }
