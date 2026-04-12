@@ -112,55 +112,55 @@ function DistrictGame() {
       <div className="game-header">
         <h1 className="game-header__title">{stateName || "Loading…"}</h1>
       </div>
-      <p className="score">
-        Score: {score} / {total}
-      </p>
-      <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
-      {!isOver && (
-        <>
-          <SearchInput
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setIsError(false);
-            }}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter district name and press Enter..."
-            isError={isError}
-          />
-          <p className="tip">Tip: Hover over a district to see its name</p>
-        </>
-      )}
-
       <div className="game-layout">
-        <svg
-          viewBox="0 0 700 600"
-          style={{ width: "100%", maxWidth: 700, height: "auto" }}
-        >
-          {stateGeo &&
-            pathFn &&
-            stateGeo.features.map((d, i) => {
-              const districtName = d.properties.district;
-              const isFound = foundDistricts.includes(districtName);
-              const isMatch =
-                !isFound &&
-                search &&
-                districtName.toLowerCase().includes(search.toLowerCase());
+        <div className="game-left-panel">
+          <p className="score">
+            Score: {score} / {total}
+          </p>
+          <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
+          {!isOver && (
+            <>
+              <SearchInput
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setIsError(false);
+                }}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter district name and press Enter..."
+                isError={isError}
+              />
+              <p className="tip">Tip: Hover over a district to see its name</p>
+            </>
+          )}
+          <FoundList items={foundDistricts} />
+        </div>
+        <div className="game-map-panel">
+          <svg viewBox="0 0 700 600">
+            {stateGeo &&
+              pathFn &&
+              stateGeo.features.map((d, i) => {
+                const districtName = d.properties.district;
+                const isFound = foundDistricts.includes(districtName);
+                const isMatch =
+                  !isFound &&
+                  search &&
+                  districtName.toLowerCase().includes(search.toLowerCase());
 
-              return (
-                <path
-                  key={i}
-                  d={pathFn(d)}
-                  className={
-                    isFound ? "found" : isMatch ? "highlight" : "state"
-                  }
-                >
-                  <title>{districtName}</title>
-                </path>
-              );
-            })}
-        </svg>
-        <FoundList items={foundDistricts} />
+                return (
+                  <path
+                    key={i}
+                    d={pathFn(d)}
+                    className={
+                      isFound ? "found" : isMatch ? "highlight" : "state"
+                    }
+                  >
+                    <title>{districtName}</title>
+                  </path>
+                );
+              })}
+          </svg>
+        </div>
       </div>
     </div>
   );

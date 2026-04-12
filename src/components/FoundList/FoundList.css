@@ -1,40 +1,57 @@
 .found-list-panel {
-  min-width: 180px;
-  max-width: 200px;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-surface);
   border: 1px solid var(--border-input);
   border-radius: 10px;
-  text-align: left;
-  position: sticky;
-  top: 24px;
-  max-height: calc(100vh - 48px);
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.found-list-panel h3 {
-  margin: 0 0 12px 0;
-  font-size: 14px;
+.found-list-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
   color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  width: 100%;
+  font-family: inherit;
+}
+
+.found-list-toggle:hover {
+  background: var(--border);
+}
+
+.found-list-chevron {
+  font-size: 16px;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.found-list-chevron--open {
+  transform: rotate(180deg);
 }
 
 .found-list {
   list-style: none;
-  padding: 0;
+  padding: 0 14px 10px;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
+  max-height: 220px;
   overflow-y: auto;
-  flex: 1;
-  min-height: 0;
 }
 
 .found-list li {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #22c55e;
 }
