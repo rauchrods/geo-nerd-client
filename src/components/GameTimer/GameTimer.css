@@ -1,7 +1,7 @@
 .game-timer {
   display: block;
   width: fit-content;
-  margin: 8px auto;
+  margin: 0;
   font-size: 20px;
   font-weight: 700;
   padding: 6px 20px;

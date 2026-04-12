@@ -86,58 +86,55 @@ function CountriesGame() {
       <div className="game-header">
         <h1 className="game-header__title">World Countries</h1>
       </div>
-      <p className="score">
-        Score: {score} / {total}
-      </p>
-      <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
-      {!isOver && (
-        <>
-          <SearchInput
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setIsError(false);
-            }}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter country name and press Enter..."
-            isError={isError}
-          />
-          <p className="tip">Tip: Hover over a country to see its name</p>
-        </>
-      )}
-
       <div className="game-layout">
-        <svg
-          className="countries-svg"
-          viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-          width={WIDTH}
-          height={HEIGHT}
-        >
-          {geoData &&
-            pathFn &&
-            geoData.features.map((d, i) => {
-              const countryName = d.properties.name;
-              const isFound = foundCountries.includes(countryName);
-              const isMatch =
-                !isFound &&
-                search &&
-                countryName.toLowerCase().includes(search.toLowerCase());
+        <div className="game-left-panel">
+          <p className="score">
+            Score: {score} / {total}
+          </p>
+          <GameTimer formatted={formatted} isOver={isOver} timeLeft={timeLeft} />
+          {!isOver && (
+            <>
+              <SearchInput
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setIsError(false);
+                }}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter country name and press Enter..."
+                isError={isError}
+              />
+              <p className="tip">Tip: Hover over a country to see its name</p>
+            </>
+          )}
+          <FoundList items={foundCountries} />
+        </div>
+        <div className="game-map-panel">
+          <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`}>
+            {geoData &&
+              pathFn &&
+              geoData.features.map((d, i) => {
+                const countryName = d.properties.name;
+                const isFound = foundCountries.includes(countryName);
+                const isMatch =
+                  !isFound &&
+                  search &&
+                  countryName.toLowerCase().includes(search.toLowerCase());
 
-              return (
-                <path
-                  key={i}
-                  d={pathFn(d)}
-                  className={
-                    isFound ? "found" : isMatch ? "highlight" : "state"
-                  }
-                >
-                  <title>{countryName}</title>
-                </path>
-              );
-            })}
-        </svg>
-
-        <FoundList items={foundCountries} />
+                return (
+                  <path
+                    key={i}
+                    d={pathFn(d)}
+                    className={
+                      isFound ? "found" : isMatch ? "highlight" : "state"
+                    }
+                  >
+                    <title>{countryName}</title>
+                  </path>
+                );
+              })}
+          </svg>
+        </div>
       </div>
     </div>
   );
