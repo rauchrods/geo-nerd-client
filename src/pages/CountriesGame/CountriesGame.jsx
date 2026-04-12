@@ -5,6 +5,7 @@ import { feature } from "topojson-client";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import FoundList from "../../components/FoundList/FoundList";
 import GameTimer from "../../components/GameTimer/GameTimer";
+import HintModal from "../../components/HintModal/HintModal";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
 import "./CountriesGame.css";
@@ -18,6 +19,7 @@ function CountriesGame() {
   const [score, setScore] = useState(0);
   const [foundCountries, setFoundCountries] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [hintTarget, setHintTarget] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { timeLeft, isOver, formatted, addTime } = useGameTimer(
@@ -81,6 +83,13 @@ function CountriesGame() {
     return () => clearTimeout(id);
   }, [isGameDone, navigate]);
 
+  const handleHintConfirm = () => {
+    if (!hintTarget) return;
+    setFoundCountries((prev) => [...prev, hintTarget]);
+    setScore((prev) => prev - 1);
+    setHintTarget(null);
+  };
+
   return (
     <div className="container">
       <div className="game-header">
@@ -104,7 +113,7 @@ function CountriesGame() {
                 placeholder="Enter country name and press Enter..."
                 isError={isError}
               />
-              <p className="tip">Tip: Hover over a country to see its name</p>
+              <p className="tip">Tip: Click a country to reveal it as a hint (−1 point)</p>
             </>
           )}
           <FoundList items={foundCountries} />
@@ -128,14 +137,22 @@ function CountriesGame() {
                     className={
                       isFound ? "found" : isMatch ? "highlight" : "state"
                     }
-                  >
-                    <title>{countryName}</title>
-                  </path>
+                    onClick={() => {
+                      if (!isFound && !isOver) setHintTarget(countryName);
+                    }}
+                  />
                 );
               })}
           </svg>
         </div>
       </div>
+      {hintTarget && (
+        <HintModal
+          name={hintTarget}
+          onConfirm={handleHintConfirm}
+          onCancel={() => setHintTarget(null)}
+        />
+      )}
     </div>
   );
 }

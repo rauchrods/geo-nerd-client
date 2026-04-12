@@ -1,0 +1,44 @@
+.hint-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.hint-modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-input);
+  border-radius: 14px;
+  padding: 28px 32px;
+  max-width: 340px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.hint-modal__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+
+.hint-modal__warning {
+  font-size: 13px;
+  color: #e65100;
+  margin: 0 0 22px;
+  font-weight: 600;
+}
+
+.hint-modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.hint-modal__actions .ui-btn--ghost {
+  margin-bottom: 0;
+}
