@@ -147,7 +147,6 @@ function UsaStatesGame() {
       </div>
       {hintTarget && (
         <HintModal
-          name={hintTarget}
           onConfirm={handleHintConfirm}
           onCancel={() => setHintTarget(null)}
         />

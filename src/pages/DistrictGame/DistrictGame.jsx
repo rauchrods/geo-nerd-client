@@ -174,7 +174,6 @@ function DistrictGame() {
       </div>
       {hintTarget && (
         <HintModal
-          name={hintTarget}
           onConfirm={handleHintConfirm}
           onCancel={() => setHintTarget(null)}
         />
