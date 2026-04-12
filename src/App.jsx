@@ -12,6 +12,7 @@ import CountriesGame from "./pages/CountriesGame/CountriesGame";
 import UsaStatesGame from "./pages/UsaStatesGame/UsaStatesGame";
 import CanadaProvincesGame from "./pages/CanadaProvincesGame/CanadaProvincesGame";
 import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
+import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/usa-states-game" element={<UsaStatesGame />} />
             <Route path="/canada-provinces-game" element={<CanadaProvincesGame />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
