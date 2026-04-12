@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaBars, FaTimes, FaTrophy, FaInfoCircle } from "react-icons/fa";
+import { FaArrowLeft, FaBars, FaTimes, FaTrophy, FaInfoCircle, FaCommentAlt } from "react-icons/fa";
 import { useTheme } from "../../context/useTheme";
 import { useAuth } from "../../context/useAuth";
 import "./Navbar.css";
@@ -71,6 +71,9 @@ function Navbar() {
           <Link to="/about" className="navbar__link">
             <FaInfoCircle /> About
           </Link>
+          <Link to="/feedback" className="navbar__link">
+            <FaCommentAlt /> Feedback
+          </Link>
           <button className="navbar__theme-btn" onClick={toggleTheme} title="Toggle theme">
             {theme === "light" ? "🌙" : "☀️"}
           </button>
@@ -108,6 +111,9 @@ function Navbar() {
           </Link>
           <Link to="/about" className="sidebar__link" onClick={closeSidebar}>
             <FaInfoCircle /> About
+          </Link>
+          <Link to="/feedback" className="sidebar__link" onClick={closeSidebar}>
+            <FaCommentAlt /> Feedback
           </Link>
 
           <div className="sidebar__divider" />

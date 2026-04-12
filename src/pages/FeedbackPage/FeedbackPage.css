@@ -1,0 +1,151 @@
+.feedback-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 16px 40px;
+}
+
+.feedback-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.feedback-icon {
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.feedback-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text);
+  text-align: center;
+}
+
+.feedback-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Form ─────────────────────────────────────────── */
+.feedback-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.feedback-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.feedback-optional {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.feedback-required {
+  color: #ef4444;
+}
+
+.feedback-input {
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 2px solid var(--border-input);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.feedback-input:focus {
+  border-color: var(--accent);
+}
+
+.feedback-input::placeholder {
+  color: var(--text-muted);
+}
+
+.feedback-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.feedback-error {
+  font-size: 13px;
+  color: #ef4444;
+  margin: 0;
+  text-align: center;
+}
+
+.feedback-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.feedback-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Success state ────────────────────────────────── */
+.feedback-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.feedback-success__icon {
+  font-size: 48px;
+  color: #22c55e;
+}
+
+.feedback-success__text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.feedback-success__sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+/* ── Mobile ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .feedback-card {
+    padding: 32px 20px;
+  }
+}
