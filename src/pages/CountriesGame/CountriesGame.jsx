@@ -8,6 +8,7 @@ import GameTimer from "../../components/GameTimer/GameTimer";
 import HintModal from "../../components/HintModal/HintModal";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
+import { findClosestFeature } from "../../utils/helpers";
 import "./CountriesGame.css";
 
 const WIDTH = 980;
@@ -19,6 +20,7 @@ function CountriesGame() {
   const [score, setScore] = useState(0);
   const [foundCountries, setFoundCountries] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [suggestion, setSuggestion] = useState(null);
   const [hintTarget, setHintTarget] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,8 +61,10 @@ function CountriesGame() {
       if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
+      setSuggestion(null);
     } else {
       setIsError(true);
+      setSuggestion(findClosestFeature(search, geoData?.features ?? [], (f) => f.properties.name));
     }
   };
 
@@ -108,11 +112,15 @@ function CountriesGame() {
                 onChange={(e) => {
                   setSearch(e.target.value);
                   setIsError(false);
+                  setSuggestion(null);
                 }}
                 onKeyDown={handleKeyDown}
                 placeholder="Enter country name and press Enter..."
                 isError={isError}
               />
+              {suggestion && (
+                <p className="suggestion">Did you mean &ldquo;<strong>{suggestion}</strong>&rdquo;?</p>
+              )}
               <p className="tip">Tip: Click a country to reveal it as a hint (−1 point)</p>
             </>
           )}

@@ -2,3 +2,9 @@
   max-width: 100%;
   height: auto;
 }
+
+.suggestion {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-warning, #e6a817);
+}

@@ -8,6 +8,7 @@ import GameTimer from "../../components/GameTimer/GameTimer";
 import HintModal from "../../components/HintModal/HintModal";
 import { useGameTimer } from "../../hooks/useGameTimer";
 import { useScoreSaver } from "../../hooks/useScoreSaver";
+import { findClosestFeature } from "../../utils/helpers";
 import "./IndianStatesGame.css";
 
 function IndianStatesGame() {
@@ -16,6 +17,7 @@ function IndianStatesGame() {
   const [score, setScore] = useState(0);
   const [foundStates, setFoundStates] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [suggestion, setSuggestion] = useState(null);
   const [hintTarget, setHintTarget] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,6 +31,9 @@ function IndianStatesGame() {
       return;
     }
   }, [location.state, navigate]);
+
+  const findClosestState = (input) =>
+    findClosestFeature(input, geoData?.features ?? [], (f) => f.properties.st_nm);
 
   const pathFn = useMemo(() => {
     if (!geoData) return null;
@@ -47,8 +52,10 @@ function IndianStatesGame() {
       if (location.state?.mode === "survival") addTime(5);
       setSearch("");
       setIsError(false);
+      setSuggestion(null);
     } else {
       setIsError(true);
+      setSuggestion(findClosestState(search));
     }
   };
 
@@ -105,11 +112,15 @@ function IndianStatesGame() {
                 onChange={(e) => {
                   setSearch(e.target.value);
                   setIsError(false);
+                  setSuggestion(null);
                 }}
                 onKeyDown={handleKeyDown}
                 placeholder="Enter state name and press Enter..."
                 isError={isError}
               />
+              {suggestion && (
+                <p className="suggestion">Did you mean &ldquo;<strong>{suggestion}</strong>&rdquo;?</p>
+              )}
               <p className="tip">Tip: Click a state to reveal it as a hint (−1 point)</p>
             </>
           )}
